@@ -124,6 +124,15 @@ Set `MaximumNotificationCount = NotificationsSource.UnlimitedNotifications` to a
 
 Set `NotificationLifeTime = NotificationsSource.NeverEndingNotification` to make notifications opened until user close them.
 
+### NotificationSource dispatcher
+
+```csharp
+    NotificationSource = new NotificationsSource(); // use default Dispatcher.CurrentDispatcher
+    NotificationSource = new NotificationsSource(specifiedDispatcher); // use different dispatcher
+```
+
+
+
 ## Additional informations
 
 ### Strongly named assembly
@@ -159,3 +168,5 @@ Uwy (https://github.com/Uwy)
 Andy Li (https://github.com/oneandy)
 
 BrainCrumbz (https://github.com/BrainCrumbz)
+
+wdcossey (https://github.com/wdcossey)

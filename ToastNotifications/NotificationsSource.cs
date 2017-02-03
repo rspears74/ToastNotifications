@@ -18,14 +18,18 @@ namespace ToastNotifications
 
         private bool _isTopmost;
 
-        public NotificationsSource()
+        public NotificationsSource() : this(Dispatcher.CurrentDispatcher)
+        {
+        }
+
+        public NotificationsSource(Dispatcher dispatcher)
         {
             NotificationMessages = new ObservableCollection<NotificationViewModel>();
 
             MaximumNotificationCount = 5;
             NotificationLifeTime = TimeSpan.FromSeconds(6);
 
-            _timer = new DispatcherTimer(DispatcherPriority.Normal);
+            _timer = new DispatcherTimer(DispatcherPriority.Normal, dispatcher);
             _timer.Interval = TimeSpan.FromMilliseconds(200);
         }
 
