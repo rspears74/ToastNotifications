@@ -85,7 +85,7 @@
 
             <toast:ReversableItemsControl x:Name="ItemsControl"  ItemsSource="{Binding NotificationsSource.NotificationMessages,ElementName=Self}" 
                           ItemTemplateSelector="{StaticResource NotificationTemplateSelector}" 
-                            ShouldReverseItems="{Binding ElementName=Self, Path=ShouldReverseItems, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
+                          ShouldReverseItems="{Binding ElementName=Self, Path=ShouldReverseItems, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
 
 
             </toast:ReversableItemsControl>

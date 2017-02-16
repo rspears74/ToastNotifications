@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using ToastNotifications;
 
 namespace ConfigurationExample
 {
@@ -42,22 +41,22 @@ namespace ConfigurationExample
 
         private void Button_ShowInformationClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Information, this.sampleTextInput.Text);
+            this.ShowInternal(NotificationType.Information, this.SampleTextInput.Text);
         }
 
         private void Button_ShowSuccessClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Success, this.sampleTextInput.Text);
+            this.ShowInternal(NotificationType.Success, this.SampleTextInput.Text);
         }
 
         private void Button_ShowWarningClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Warning, this.sampleTextInput.Text);
+            this.ShowInternal(NotificationType.Warning, this.SampleTextInput.Text);
         }
 
         private void Button_ShowErrorClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Error, this.sampleTextInput.Text);
+            this.ShowInternal(NotificationType.Error, this.SampleTextInput.Text);
         }
     }
 }

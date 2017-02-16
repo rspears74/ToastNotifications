@@ -19,10 +19,8 @@ namespace ToastNotifications
         private static void PopupFlowDirectionPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var notificationTray = d as NotificationTray;
-            if (notificationTray == null)
-                return;
 
-            notificationTray.SetShouldReverseItems(e.NewValue as PopupFlowDirection? ?? PopupFlowDirection.LeftDown);
+            notificationTray?.SetShouldReverseItems(e.NewValue as PopupFlowDirection? ?? PopupFlowDirection.LeftDown);
         }
 
 

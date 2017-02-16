@@ -1,7 +1,6 @@
 ﻿<Window x:Class="ConfigurationExample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:toast="clr-namespace:ToastNotifications;assembly=ToastNotifications"
         xmlns:configurationExample="clr-namespace:ConfigurationExample"
         Title="MainWindow" Height="700" Width="1024">
     <Grid>
@@ -24,17 +23,14 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <toast:NotificationTray Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                                    NotificationsSource="{Binding NotificationSource}" 
-                                    PopupFlowDirection="{Binding PopupFlowDirection}" />
         </Grid>
-        <TextBox x:Name="sampleTextInput" Grid.Row="1" />
+        <TextBox x:Name="SampleTextInput" Grid.Row="1" />
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
-            <RadioButton IsChecked="{Binding Path=PopupFlowDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=LeftUp}">LeftUp</RadioButton>
-            <RadioButton IsChecked="{Binding Path=PopupFlowDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=LeftDown}">LeftDown</RadioButton>
-            <RadioButton IsChecked="{Binding Path=PopupFlowDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=RightUp}">RightUp</RadioButton>
-            <RadioButton IsChecked="{Binding Path=PopupFlowDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=RightDown}">RightDown</RadioButton>
+            <RadioButton IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=TopLeft}">LeftUp</RadioButton>
+            <RadioButton IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=BottomLeft}">LeftDown</RadioButton>
+            <RadioButton IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=TopRight}">RightUp</RadioButton>
+            <RadioButton IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=BottomRight}">RightDown</RadioButton>
         </StackPanel>
     
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3">

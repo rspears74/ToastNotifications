@@ -1,63 +1,44 @@
-using System;
 using System.ComponentModel;
-using ToastNotifications;
+using WpfNotifications.Position;
 
 namespace ConfigurationExample
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private NotificationsSource _notificationSource;
+        private Corner _corner;
+        private NotificationService _notificationService;
 
-        public NotificationsSource NotificationSource
+        public Corner Corner
         {
-            get { return _notificationSource; }
+            get { return _corner; }
             set
             {
-                _notificationSource = value;
-                OnPropertyChanged("NotificationSource");
+                _corner = value;
+                OnPropertyChanged("Corner");
+                _notificationService.ChangePosition(_corner);
             }
         }
-
-        private PopupFlowDirection _popupFlowDirection;
-
-        public PopupFlowDirection PopupFlowDirection
-        {
-            get { return _popupFlowDirection; }
-            set
-            {
-                _popupFlowDirection = value;
-                OnPropertyChanged("PopupFlowDirection");
-            }
-        }
-
 
         public MainViewModel()
         {
-            NotificationSource = new NotificationsSource
-            {
-                MaximumNotificationCount = 5,
-                NotificationLifeTime = TimeSpan.FromSeconds(3)
-            };
+            _notificationService = new NotificationService();
         }
 
         public void ShowInformation(string message)
         {
-            NotificationSource.Show(message, NotificationType.Information);
+            _notificationService.ShowInformation(message);
         }
 
         public void ShowSuccess(string message)
         {
-            NotificationSource.Show(message, NotificationType.Success);
         }
 
         public void ShowWarning(string message)
         {
-            NotificationSource.Show(message, NotificationType.Warning);
         }
 
         public void ShowError(string message)
         {
-            NotificationSource.Show(message, NotificationType.Error);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
