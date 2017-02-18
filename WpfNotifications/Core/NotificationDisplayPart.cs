@@ -12,14 +12,13 @@ namespace WpfNotifications.Core
         
         protected NotificationDisplayPart()
         {
-            _animator = new NotificationAnimator(this, TimeSpan.FromMilliseconds(200), TimeSpan.FromMilliseconds(100));
+            _animator = new NotificationAnimator(this, TimeSpan.FromMilliseconds(300), TimeSpan.FromMilliseconds(300));
 
             Margin = new Thickness(1);
 
             _animator.Setup();
             
             Loaded += OnLoaded;
-            MinHeight = 50;
             Height = 50;
         }
         

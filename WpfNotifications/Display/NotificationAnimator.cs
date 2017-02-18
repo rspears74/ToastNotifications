@@ -80,7 +80,7 @@ namespace WpfNotifications.Display
             DoubleAnimation shrinkYAnimation = new DoubleAnimation
             {
                 Duration = _hideAnimationTime,
-                From = 1,
+                From = _displayPart.Height,
                 To = 0
             };
 
@@ -95,22 +95,22 @@ namespace WpfNotifications.Display
 
             storyboard.Children.Add(shrinkXAnimation);
 
-            DoubleAnimation fadeInAnimation = new DoubleAnimation
+            DoubleAnimation fadeOutAnimation = new DoubleAnimation
             {
                 Duration = _hideAnimationTime,
                 From = 1,
                 To = 0
             };
 
-            storyboard.Children.Add(fadeInAnimation);
+            storyboard.Children.Add(fadeOutAnimation);
 
-            Storyboard.SetTargetProperty(shrinkYAnimation, new PropertyPath("RenderTransform.ScaleY"));
+            Storyboard.SetTargetProperty(shrinkYAnimation, new PropertyPath("Height"));
             Storyboard.SetTarget(shrinkYAnimation, _displayPart);
             Storyboard.SetTargetProperty(shrinkXAnimation, new PropertyPath("RenderTransform.ScaleX"));
             Storyboard.SetTarget(shrinkXAnimation, _displayPart);
 
-            Storyboard.SetTargetProperty(fadeInAnimation, new PropertyPath("Opacity"));
-            Storyboard.SetTarget(fadeInAnimation, _displayPart);
+            Storyboard.SetTargetProperty(fadeOutAnimation, new PropertyPath("Opacity"));
+            Storyboard.SetTarget(fadeOutAnimation, _displayPart);
 
             storyboard.Begin();
         }

@@ -92,7 +92,7 @@ namespace WpfNotifications.Display
         private void CloseNotification(INotification notification)
         {
             notification.DisplayPart.OnClose();
-            DelayAction.Execute(TimeSpan.FromMilliseconds(400), () => _window.CloseNotification(notification.DisplayPart));
+            DelayAction.Execute(TimeSpan.FromMilliseconds(300), () => _window.CloseNotification(notification.DisplayPart));
         }
 
         private void ShowWindow()
