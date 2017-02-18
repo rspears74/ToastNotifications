@@ -1,27 +1,27 @@
-﻿using System;
+using System;
 using System.Windows;
 using WpfNotifications.Core;
 
 namespace WpfNotifications.Position
 {
-    public class PrimaryScreenPositionProvider : IPositionProvider
+    public class WindowPositionProvider : IPositionProvider
     {
         private readonly Corner _corner;
         private readonly double _offsetX;
         private readonly double _offsetY;
 
-        private double ScreenHeight => SystemParameters.PrimaryScreenHeight;
-        private double ScreenWidth => SystemParameters.PrimaryScreenWidth;
-
         public Window ParentWindow { get; }
         public EjectDirection EjectDirection { get; private set; }
-        
-        public PrimaryScreenPositionProvider(Corner corner, double offsetX, double offsetY)
+
+        public WindowPositionProvider(Window parentWindow, Corner corner, double offsetX, double offsetY)
         {
             _corner = corner;
             _offsetX = offsetX;
             _offsetY = offsetY;
-            ParentWindow = null;
+            ParentWindow = parentWindow;
+
+            parentWindow.SizeChanged += ParentWindowOnSizeChanged;
+            parentWindow.LocationChanged += ParentWindowOnLocationChanged;
 
             SetEjectDirection(corner);
         }
@@ -45,9 +45,9 @@ namespace WpfNotifications.Position
 
         public double GetHeight()
         {
-            return ScreenHeight;
+            return ParentWindow.ActualHeight;
         }
-        
+
         private void SetEjectDirection(Corner corner)
         {
             switch (corner)
@@ -67,30 +67,45 @@ namespace WpfNotifications.Position
 
         private Point GetPositionForBottomLeftCorner(double notificationPopupWidth, double notificationPopupHeight)
         {
-            return new Point(_offsetX, ScreenHeight - _offsetY - notificationPopupHeight);
+            return new Point(ParentWindow.Left + _offsetX, ParentWindow.Top + ParentWindow.ActualHeight - _offsetY - notificationPopupHeight);
         }
 
         private Point GetPositionForBottomRightCorner(double notificationPopupWidth, double notificationPopupHeight)
         {
-            return new Point(ScreenWidth - _offsetX - notificationPopupWidth, ScreenHeight - _offsetY - notificationPopupHeight);
+            return new Point(ParentWindow.Left + ParentWindow.ActualWidth - _offsetX - notificationPopupWidth, ParentWindow.Top + ParentWindow.ActualHeight - _offsetY - notificationPopupHeight);
         }
 
         private Point GetPositionForTopLeftCorner(double notificationPopupWidth, double notificationPopupHeight)
         {
-            return new Point(_offsetX, _offsetY);
+            return new Point(ParentWindow.Left + _offsetX, ParentWindow.Top + _offsetY);
         }
 
         private Point GetPositionForTopRightCorner(double notificationPopupWidth, double notificationPopupHeight)
         {
-            return new Point(ScreenWidth - _offsetX - notificationPopupWidth, _offsetY);
+            return new Point( ParentWindow.Left + ParentWindow.ActualWidth - _offsetX - notificationPopupWidth,  ParentWindow.Top + _offsetY);
         }
 
         public void Dispose()
         {
-            // nothing to do here
+            ParentWindow.LocationChanged -= ParentWindowOnLocationChanged;
+            ParentWindow.SizeChanged -= ParentWindowOnSizeChanged;
         }
 
-        // not used in this provider
+        protected virtual void RequestUpdatePosition()
+        {
+            UpdatePositionRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ParentWindowOnLocationChanged(object sender, EventArgs eventArgs)
+        {
+            RequestUpdatePosition();
+        }
+
+        private void ParentWindowOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            RequestUpdatePosition();
+        }
+
         public event EventHandler UpdatePositionRequested;
     }
 }

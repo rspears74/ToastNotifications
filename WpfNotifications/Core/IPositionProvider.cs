@@ -9,5 +9,6 @@ namespace WpfNotifications.Core
         Point GetPosition(double notificationPopupWidth, double notificationPopupHeight);
         double GetHeight();
         EjectDirection EjectDirection { get; }
+        event EventHandler UpdatePositionRequested;
     }
 }

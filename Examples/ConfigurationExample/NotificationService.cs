@@ -14,27 +14,33 @@ namespace ConfigurationExample
 
         public NotificationService()
         {
-            _notifier = CreateNotifier(Corner.TopRight);
+            _notifier = CreateNotifier(Corner.TopRight, PositionRelation.Window);
             Application.Current.MainWindow.Closing += MainWindowOnClosing;
         }
 
-        private Notifier CreateNotifier(Corner corner)
+        private Notifier CreateNotifier(Corner corner, PositionRelation relation)
         {
             _notifier?.Dispose();
             _notifier = null;
 
             return new Notifier(cfg =>
             {
-                cfg.PositionProvider = new PrimaryScreenPositionProvider(corner, 5, 5);
+                IPositionProvider positionProvider = null;
+                if (relation == PositionRelation.Window)
+                    positionProvider = new WindowPositionProvider(Application.Current.MainWindow, corner, 5, 5);
+                else
+                    positionProvider = new PrimaryScreenPositionProvider(corner, 5, 5);
+
+                cfg.PositionProvider = positionProvider;
                 cfg.Dispatcher = Dispatcher.CurrentDispatcher;
                 cfg.NotificationLifeTime = NotifierConfiguration.NeverEndingNotification;
                 cfg.MaximumNotificationCount = 5;  //NotifierConfiguration.UnlimitedNotifications;
             });
         }
 
-        public void ChangePosition(Corner corner)
+        public void ChangePosition(Corner corner, PositionRelation relation)
         {
-            _notifier = CreateNotifier(corner);
+            _notifier = CreateNotifier(corner, relation);
         }
 
         public void ShowInformation(string message)

@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="Position\Corner.cs" />
     <Compile Include="Position\PrimaryScreenPositionProvider.cs" />
+    <Compile Include="Position\WindowPositionProvider.cs" />
     <Compile Include="Utilities\DateTimeNow.cs" />
     <Compile Include="Notifications\Information.cs" />
     <Compile Include="Core\INotification.cs" />

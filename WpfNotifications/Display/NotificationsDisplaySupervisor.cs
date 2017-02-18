@@ -25,8 +25,10 @@ namespace WpfNotifications.Display
 
             _lifeTimeSupervisor.ShowNotificationRequested += LifeTimeSupervisorOnShowNotificationRequested;
             _lifeTimeSupervisor.CloseNotificationRequested += LifeTimeSupervisorOnCloseNotificationRequested;
+
+            _positionProvider.UpdatePositionRequested += PositionProviderOnUpdatePositionRequested;
         }
-        
+
         public void DisplayNotification(INotification notification)
         {
             Dispatch(() => InternalDisplayNotification(notification));
@@ -110,6 +112,11 @@ namespace WpfNotifications.Display
             CloseNotification(eventArgs.Notification);
         }
 
+        private void PositionProviderOnUpdatePositionRequested(object sender, EventArgs eventArgs)
+        {
+            UpdateWindowPosition();
+        }
+
         public void Dispose()
         {
             _window?.Close();
@@ -117,6 +124,8 @@ namespace WpfNotifications.Display
 
             _lifeTimeSupervisor.ShowNotificationRequested -= LifeTimeSupervisorOnShowNotificationRequested;
             _lifeTimeSupervisor.CloseNotificationRequested -= LifeTimeSupervisorOnCloseNotificationRequested;
+
+            _positionProvider.UpdatePositionRequested -= PositionProviderOnUpdatePositionRequested;
 
             _lifeTimeSupervisor = null;
         }

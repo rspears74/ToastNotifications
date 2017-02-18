@@ -6,7 +6,7 @@ namespace ConfigurationExample
     public class MainViewModel : INotifyPropertyChanged
     {
         private Corner _corner;
-        private NotificationService _notificationService;
+        private readonly NotificationService _notificationService;
 
         public Corner Corner
         {
@@ -15,7 +15,19 @@ namespace ConfigurationExample
             {
                 _corner = value;
                 OnPropertyChanged("Corner");
-                _notificationService.ChangePosition(_corner);
+                _notificationService.ChangePosition(_corner, _relation);
+            }
+        }
+
+        private PositionRelation _relation;
+        public PositionRelation Relation
+        {
+            get { return _relation; }
+            set
+            {
+                _relation = value;
+                OnPropertyChanged("Relation");
+                _notificationService.ChangePosition(_corner, _relation);
             }
         }
 
