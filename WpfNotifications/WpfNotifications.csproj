@@ -65,6 +65,7 @@
     <Compile Include="Notifications\InformationDisplayPart.xaml.cs">
       <DependentUpon>InformationDisplayPart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Position\ControlPositionProvider.cs" />
     <Compile Include="Position\Corner.cs" />
     <Compile Include="Position\PrimaryScreenPositionProvider.cs" />
     <Compile Include="Position\WindowPositionProvider.cs" />

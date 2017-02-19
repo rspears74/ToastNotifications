@@ -3,6 +3,7 @@
     public enum PositionRelation
     {
         Window,
-        Screen
+        Screen,
+        Control
     }
 }

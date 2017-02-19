@@ -14,11 +14,11 @@ namespace ConfigurationExample
 
         public NotificationService()
         {
-            _notifier = CreateNotifier(Corner.TopRight, PositionRelation.Window);
+            _notifier = CreateNotifier(Corner.TopRight, PositionRelation.Window, EjectDirection.ToBottom);
             Application.Current.MainWindow.Closing += MainWindowOnClosing;
         }
 
-        private Notifier CreateNotifier(Corner corner, PositionRelation relation)
+        private Notifier CreateNotifier(Corner corner, PositionRelation relation, EjectDirection ejectDirection)
         {
             _notifier?.Dispose();
             _notifier = null;
@@ -26,10 +26,20 @@ namespace ConfigurationExample
             return new Notifier(cfg =>
             {
                 IPositionProvider positionProvider = null;
-                if (relation == PositionRelation.Window)
-                    positionProvider = new WindowPositionProvider(Application.Current.MainWindow, corner, 5, 5);
-                else
-                    positionProvider = new PrimaryScreenPositionProvider(corner, 5, 5);
+                switch (relation)
+                {
+                    case PositionRelation.Window:
+                        positionProvider = new WindowPositionProvider(Application.Current.MainWindow, corner, 0, 0);
+                        break;
+                    case PositionRelation.Screen:
+                        positionProvider = new PrimaryScreenPositionProvider(corner, 5, 5);
+                        break;
+                    case PositionRelation.Control:
+                        var mainWindow = Application.Current.MainWindow as MainWindow;
+                        var trackingElement = mainWindow?.TrackingElement;
+                        positionProvider = new ControlPositionProvider(mainWindow, trackingElement, ejectDirection);
+                        break;
+                }
 
                 cfg.PositionProvider = positionProvider;
                 cfg.Dispatcher = Dispatcher.CurrentDispatcher;
@@ -38,9 +48,9 @@ namespace ConfigurationExample
             });
         }
 
-        public void ChangePosition(Corner corner, PositionRelation relation)
+        public void ChangePosition(Corner corner, PositionRelation relation, EjectDirection ejectDirection)
         {
-            _notifier = CreateNotifier(corner, relation);
+            _notifier = CreateNotifier(corner, relation, ejectDirection);
         }
 
         public void ShowInformation(string message)
