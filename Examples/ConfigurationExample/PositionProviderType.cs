@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationExample
 {
-    public enum PositionRelation
+    public enum PositionProviderType
     {
         Window,
         Screen,

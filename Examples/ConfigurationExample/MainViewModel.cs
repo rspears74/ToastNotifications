@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using WpfNotifications.Core;
 using WpfNotifications.Position;
 
 namespace ConfigurationExample
@@ -16,31 +15,19 @@ namespace ConfigurationExample
             {
                 _corner = value;
                 OnPropertyChanged("Corner");
-                _notificationService.ChangePosition(_corner, _relation, _ejectDirection);
+                _notificationService.ChangePosition(_corner, _positionProviderType);
             }
         }
 
-        private PositionRelation _relation;
-        public PositionRelation Relation
+        private PositionProviderType _positionProviderType;
+        public PositionProviderType PositionProviderType
         {
-            get { return _relation; }
+            get { return _positionProviderType; }
             set
             {
-                _relation = value;
-                OnPropertyChanged("Relation");
-                _notificationService.ChangePosition(_corner, _relation, _ejectDirection);
-            }
-        }
-
-        private EjectDirection _ejectDirection;
-        public EjectDirection EjectDirection
-        {
-            get { return _ejectDirection; }
-            set
-            {
-                _ejectDirection = value;
-                OnPropertyChanged("EjectDirection");
-                _notificationService.ChangePosition(_corner, _relation, _ejectDirection);
+                _positionProviderType = value;
+                OnPropertyChanged("PositionProviderType");
+                _notificationService.ChangePosition(_corner, _positionProviderType);
             }
         }
 

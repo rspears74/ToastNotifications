@@ -14,11 +14,11 @@ namespace ConfigurationExample
 
         public NotificationService()
         {
-            _notifier = CreateNotifier(Corner.TopRight, PositionRelation.Window, EjectDirection.ToBottom);
+            _notifier = CreateNotifier(Corner.TopRight, PositionProviderType.Window);
             Application.Current.MainWindow.Closing += MainWindowOnClosing;
         }
 
-        private Notifier CreateNotifier(Corner corner, PositionRelation relation, EjectDirection ejectDirection)
+        private Notifier CreateNotifier(Corner corner, PositionProviderType relation)
         {
             _notifier?.Dispose();
             _notifier = null;
@@ -28,16 +28,16 @@ namespace ConfigurationExample
                 IPositionProvider positionProvider = null;
                 switch (relation)
                 {
-                    case PositionRelation.Window:
+                    case PositionProviderType.Window:
                         positionProvider = new WindowPositionProvider(Application.Current.MainWindow, corner, 0, 0);
                         break;
-                    case PositionRelation.Screen:
+                    case PositionProviderType.Screen:
                         positionProvider = new PrimaryScreenPositionProvider(corner, 5, 5);
                         break;
-                    case PositionRelation.Control:
+                    case PositionProviderType.Control:
                         var mainWindow = Application.Current.MainWindow as MainWindow;
                         var trackingElement = mainWindow?.TrackingElement;
-                        positionProvider = new ControlPositionProvider(mainWindow, trackingElement, ejectDirection);
+                        positionProvider = new ControlPositionProvider(mainWindow, trackingElement, corner, 5, 5);
                         break;
                 }
 
@@ -48,9 +48,9 @@ namespace ConfigurationExample
             });
         }
 
-        public void ChangePosition(Corner corner, PositionRelation relation, EjectDirection ejectDirection)
+        public void ChangePosition(Corner corner, PositionProviderType relation)
         {
-            _notifier = CreateNotifier(corner, relation, ejectDirection);
+            _notifier = CreateNotifier(corner, relation);
         }
 
         public void ShowInformation(string message)

@@ -68,7 +68,7 @@
     </Compile>
     <Compile Include="NotificationService.cs" />
     <Compile Include="NotificationType.cs" />
-    <Compile Include="PositionRelation.cs" />
+    <Compile Include="PositionProviderType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

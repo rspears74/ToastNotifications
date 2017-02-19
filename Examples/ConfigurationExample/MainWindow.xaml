@@ -24,7 +24,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Ellipse x:Name="TrackingElement" Fill="Red" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="0" Width="0"  />
+            <Rectangle x:Name="TrackingElement" Fill="{x:Null}" Stroke="Red" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="500" Width="500"  />
         </Grid>
 
         <Grid Grid.Row="1" HorizontalAlignment="Stretch">
@@ -40,13 +40,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal"  VerticalAlignment="Center">
-                <TextBlock Text="Position relative to:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
-                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Relation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Window}">Window</RadioButton>
-                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Relation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Screen}">Main screen</RadioButton>
-                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Relation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Control}">Control</RadioButton>
+                <TextBlock Text="Position provider:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
+                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=PositionProviderType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Window}">Window</RadioButton>
+                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=PositionProviderType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Screen}">Main screen</RadioButton>
+                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=PositionProviderType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Control}">Control</RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal"  VerticalAlignment="Center" >
                 <TextBlock Text="Corner:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
@@ -55,19 +54,14 @@
                 <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=TopRight}">TopRight</RadioButton>
                 <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=BottomRight}">BottomRight</RadioButton>
             </StackPanel>
-            <StackPanel Grid.Column="2" Orientation="Horizontal"  VerticalAlignment="Center" Margin="5">
-                <TextBlock Text="Eject direction:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
-                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=EjectDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ToBottom}">ToBottom</RadioButton>
-                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=EjectDirection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=ToTop}">ToTop</RadioButton>
-            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Show notification type:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
+            <TextBlock Text="Notification type:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1" >
                 <Button Content="Information" Margin="5" Width="100" Click="Button_ShowInformationClick" />
                 <Button Content="Success" Margin="5" Width="100" Click="Button_ShowSuccessClick" />
