@@ -47,6 +47,9 @@ namespace WpfNotifications
 
 
         private bool _disposed = false;
+
+        public object SyncRoot => _syncRoot;
+
         public void Dispose()
         {
             if (_disposed == false)

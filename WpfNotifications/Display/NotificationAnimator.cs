@@ -28,7 +28,7 @@ namespace WpfNotifications.Display
         public void PlayShowAnimation()
         {
             var scale = (ScaleTransform)_displayPart.RenderTransform;
-            scale.CenterY = _displayPart.Height / 2;
+            scale.CenterY = _displayPart.ActualHeight / 2;
             scale.CenterX = _displayPart.ActualWidth / 2;
 
             Storyboard storyboard = new Storyboard();
@@ -71,8 +71,9 @@ namespace WpfNotifications.Display
 
         public void PlayHideAnimation()
         {
+            _displayPart.MinHeight = 0;
             var scale = (ScaleTransform)_displayPart.RenderTransform;
-            scale.CenterY = _displayPart.Height / 2;
+            scale.CenterY = _displayPart.ActualHeight / 2;
             scale.CenterX = _displayPart.ActualWidth / 2;
 
             Storyboard storyboard = new Storyboard();
@@ -80,7 +81,7 @@ namespace WpfNotifications.Display
             DoubleAnimation shrinkYAnimation = new DoubleAnimation
             {
                 Duration = _hideAnimationTime,
-                From = _displayPart.Height,
+                From = _displayPart.ActualHeight,
                 To = 0
             };
 

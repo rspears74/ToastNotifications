@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:core="clr-namespace:WpfNotifications.Core"
              mc:Ignorable="d" >
-    <Grid Background="DarkCyan" Width="200" MinHeight="50">
+    <Grid Background="DarkCyan" Width="200" MinHeight="50"  >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding Message, Mode=OneTime}"  TextWrapping="Wrap"  />
+        <TextBlock Text="{Binding Message, Mode=OneTime}"  TextWrapping="WrapWithOverflow"  HorizontalAlignment="Stretch" />
         <Button Content="x" VerticalAlignment="Center" Padding="1" Grid.Column="1" Click="OnClose"/>
     </Grid>
 </core:NotificationDisplayPart>

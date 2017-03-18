@@ -19,7 +19,8 @@ namespace WpfNotifications.Core
             _animator.Setup();
             
             Loaded += OnLoaded;
-            Height = 50;
+            MinHeight = 50;
+            MaxHeight = 1000;
         }
         
         public void Bind<TNotification>(TNotification notification) where TNotification : INotification
