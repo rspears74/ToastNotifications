@@ -51,28 +51,27 @@ namespace ConfigurationExample
 
         internal void ShowWarning(string message)
         {
-            _notifier.Notify<Warning>(() => new Warning(message));
+            _notifier.ShowWarning(message);
         }
-
 
         internal void ShowSuccess(string message)
         {
-            _notifier.Notify<Success>(() => new Success(message));
+            _notifier.ShowSuccess(message);
+        }
+
+        public void ShowInformation(string message)
+        {
+            _notifier.ShowInformation(message);
+        }
+
+        public void ShowError(string message)
+        {
+            _notifier.ShowError(message);
         }
 
         public void ChangePosition(Corner corner, PositionProviderType relation, NotificationLifetime lifetime)
         {
             _notifier = CreateNotifier(corner, relation, lifetime);
-        }
-
-        public void ShowInformation(string message)
-        {
-            _notifier.Notify<Information>(() => new Information(message));
-        }
-
-        public void ShowError(string message)
-        {
-            _notifier.Notify<Error>(() => new Error(message));
         }
 
         private void MainWindowOnClosing(object sender, CancelEventArgs cancelEventArgs)

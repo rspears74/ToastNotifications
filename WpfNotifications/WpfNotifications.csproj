@@ -62,10 +62,13 @@
     <Compile Include="Lifetime\CloseNotificationEventArgs.cs" />
     <Compile Include="Lifetime\INotificationsLifeTimeSupervisor.cs" />
     <Compile Include="Lifetime\ShowNotificationEventArgs.cs" />
+    <Compile Include="Notifications\ErrorExtensions.cs" />
+    <Compile Include="Notifications\InformationExtensions.cs" />
     <Compile Include="Notifications\SuccessDisplayPart.xaml.cs">
       <DependentUpon>SuccessDisplayPart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notifications\Success.cs" />
+    <Compile Include="Notifications\SuccessExtensions.cs" />
     <Compile Include="Notifications\WarningDisplayPart.xaml.cs">
       <DependentUpon>WarningDisplayPart.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,7 @@
     <Compile Include="Notifications\InformationDisplayPart.xaml.cs">
       <DependentUpon>InformationDisplayPart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Notifications\WarningExtensions.cs" />
     <Compile Include="Position\ControlPositionProvider.cs" />
     <Compile Include="Position\Corner.cs" />
     <Compile Include="Position\PrimaryScreenPositionProvider.cs" />
