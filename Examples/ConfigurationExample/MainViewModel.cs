@@ -59,14 +59,17 @@ namespace ConfigurationExample
 
         public void ShowSuccess(string message)
         {
-        }
-
-        public void ShowWarning(string message)
-        {
+            _notificationService.ShowSuccess(message);
         }
 
         public void ShowError(string message)
         {
+            _notificationService.ShowError(message);
+        }
+
+        public void ShowWarning(string message)
+        {
+            _notificationService.ShowWarning(message);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -62,6 +62,18 @@
     <Compile Include="Lifetime\CloseNotificationEventArgs.cs" />
     <Compile Include="Lifetime\INotificationsLifeTimeSupervisor.cs" />
     <Compile Include="Lifetime\ShowNotificationEventArgs.cs" />
+    <Compile Include="Notifications\SuccessDisplayPart.xaml.cs">
+      <DependentUpon>SuccessDisplayPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\Success.cs" />
+    <Compile Include="Notifications\WarningDisplayPart.xaml.cs">
+      <DependentUpon>WarningDisplayPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\Warning.cs" />
+    <Compile Include="Notifications\Error.cs" />
+    <Compile Include="Notifications\ErrorDisplayPart.xaml.cs">
+      <DependentUpon>ErrorDisplayPart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Notifications\InformationDisplayPart.xaml.cs">
       <DependentUpon>InformationDisplayPart.xaml</DependentUpon>
     </Compile>
@@ -111,6 +123,18 @@
     <Page Include="Display\NotificationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notifications\SuccessDisplayPart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notifications\WarningDisplayPart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notifications\ErrorDisplayPart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Notifications\InformationDisplayPart.xaml">
       <SubType>Designer</SubType>
