@@ -40,6 +40,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal"  VerticalAlignment="Center">
                 <TextBlock Text="Position provider:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
@@ -53,6 +54,11 @@
                 <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=BottomLeft}">BottomLeft</RadioButton>
                 <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=TopRight}">TopRight</RadioButton>
                 <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Corner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=BottomRight}">BottomRight</RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal"  VerticalAlignment="Center" >
+                <TextBlock Text="Lifetime:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
+                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Lifetime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=Basic}">Basic</RadioButton>
+                <RadioButton VerticalAlignment="Center" IsChecked="{Binding Path=Lifetime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EnumBooleanConverter}, ConverterParameter=TimeBased}">Time based</RadioButton>
             </StackPanel>
         </Grid>
 

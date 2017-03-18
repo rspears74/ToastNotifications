@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Threading;
@@ -14,11 +15,11 @@ namespace ConfigurationExample
 
         public NotificationService()
         {
-            _notifier = CreateNotifier(Corner.TopRight, PositionProviderType.Window);
+            _notifier = CreateNotifier(Corner.TopRight, PositionProviderType.Window, NotificationLifetime.Basic);
             Application.Current.MainWindow.Closing += MainWindowOnClosing;
         }
 
-        private Notifier CreateNotifier(Corner corner, PositionProviderType relation)
+        private Notifier CreateNotifier(Corner corner, PositionProviderType relation, NotificationLifetime lifetime)
         {
             _notifier?.Dispose();
             _notifier = null;
@@ -43,14 +44,14 @@ namespace ConfigurationExample
 
                 cfg.PositionProvider = positionProvider;
                 cfg.Dispatcher = Dispatcher.CurrentDispatcher;
-                cfg.NotificationLifeTime = NotifierConfiguration.NeverEndingNotification;
+                cfg.NotificationLifeTime = lifetime == NotificationLifetime.Basic ? NotifierConfiguration.NeverEndingNotification : TimeSpan.FromSeconds(5);
                 cfg.MaximumNotificationCount = 5;  //NotifierConfiguration.UnlimitedNotifications;
             });
         }
 
-        public void ChangePosition(Corner corner, PositionProviderType relation)
+        public void ChangePosition(Corner corner, PositionProviderType relation, NotificationLifetime lifetime)
         {
-            _notifier = CreateNotifier(corner, relation);
+            _notifier = CreateNotifier(corner, relation, lifetime);
         }
 
         public void ShowInformation(string message)

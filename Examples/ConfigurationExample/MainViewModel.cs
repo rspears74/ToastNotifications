@@ -15,7 +15,7 @@ namespace ConfigurationExample
             {
                 _corner = value;
                 OnPropertyChanged("Corner");
-                _notificationService.ChangePosition(_corner, _positionProviderType);
+                _notificationService.ChangePosition(_corner, _positionProviderType, _lifetime);
             }
         }
 
@@ -27,7 +27,23 @@ namespace ConfigurationExample
             {
                 _positionProviderType = value;
                 OnPropertyChanged("PositionProviderType");
-                _notificationService.ChangePosition(_corner, _positionProviderType);
+                _notificationService.ChangePosition(_corner, _positionProviderType, _lifetime);
+            }
+        }
+
+        private NotificationLifetime _lifetime;
+
+        public NotificationLifetime Lifetime
+        {
+            get
+            {
+                return _lifetime;
+            }
+            set
+            {
+                _lifetime = value;
+                OnPropertyChanged("Lifetime");
+                _notificationService.ChangePosition(_corner, _positionProviderType, _lifetime);
             }
         }
 

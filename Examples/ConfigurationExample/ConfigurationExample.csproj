@@ -66,6 +66,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NotificationLifetime.cs" />
     <Compile Include="NotificationService.cs" />
     <Compile Include="NotificationType.cs" />
     <Compile Include="PositionProviderType.cs" />

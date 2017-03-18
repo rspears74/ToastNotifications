@@ -20,7 +20,6 @@ namespace WpfNotifications.Core
             
             Loaded += OnLoaded;
             MinHeight = 50;
-            MaxHeight = 1000;
         }
         
         public void Bind<TNotification>(TNotification notification) where TNotification : INotification
