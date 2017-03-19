@@ -9,6 +9,5 @@ namespace WpfNotifications.Core
         public INotificationsLifetimeSupervisor LifetimeSupervisor { get; set; }
 
         public Dispatcher Dispatcher { get; set; }
-        public MaximumNotificationCount MaximumNotificationCount { get; set; }
     }
 }

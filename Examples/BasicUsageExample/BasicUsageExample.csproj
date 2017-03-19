@@ -98,9 +98,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ToastNotifications\ToastNotifications.csproj">
-      <Project>{60C456A0-FE6C-4C00-9E6D-B51A47E5A4F3}</Project>
-      <Name>ToastNotifications</Name>
+    <ProjectReference Include="..\..\WpfNotifications.Messages\WpfNotifications.Messages.csproj">
+      <Project>{c6886af1-f89f-498c-833a-bda50753cc7a}</Project>
+      <Name>WpfNotifications.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WpfNotifications\WpfNotifications.csproj">
+      <Project>{f9305b63-3c20-45b7-abec-903f89235e8c}</Project>
+      <Name>WpfNotifications</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

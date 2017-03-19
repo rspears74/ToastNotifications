@@ -1,45 +1,53 @@
+using System;
 using System.ComponentModel;
-using ToastNotifications;
+using System.Windows;
+using WpfNotifications;
+using WpfNotifications.Lifetime;
+using WpfNotifications.Messages;
+using WpfNotifications.Position;
 
 namespace BasicUsageExample
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private NotificationsSource _notificationSource;
-
-        public NotificationsSource NotificationSource
-        {
-            get { return _notificationSource; }
-            set
-            {
-                _notificationSource = value;
-                OnPropertyChanged("NotificationSource");
-            }
-        }
+        private Notifier _notifier;
 
         public MainViewModel()
         {
-            NotificationSource = new NotificationsSource();
+            _notifier = new Notifier(cfg =>
+            {
+                cfg.PositionProvider = new WindowPositionProvider(
+                    parentWindow: Application.Current.MainWindow, 
+                    corner: Corner.TopRight, 
+                    offsetX: 10,  
+                    offsetY: 10);
+
+                cfg.LifetimeSupervisor = new TimeBasedLifetimeSupervisor(
+                    notificationLifetime: TimeSpan.FromSeconds(3), 
+                    maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+                cfg.Dispatcher = Application.Current.MainWindow.Dispatcher;
+            });
         }
 
         public void ShowInformation(string message)
         {
-            NotificationSource.Show(message, NotificationType.Information);
+            _notifier.ShowInformation(message);
         }
 
         public void ShowSuccess(string message)
         {
-            NotificationSource.Show(message, NotificationType.Success);
+            _notifier.ShowSuccess(message);
         }
 
         public void ShowWarning(string message)
         {
-            NotificationSource.Show(message, NotificationType.Warning);
+            _notifier.ShowWarning(message);
         }
 
         public void ShowError(string message)
         {
-            NotificationSource.Show(message, NotificationType.Error);
+            _notifier.ShowError(message);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
