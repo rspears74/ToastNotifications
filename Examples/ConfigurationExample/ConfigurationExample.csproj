@@ -103,6 +103,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\WpfNotifications.Messages\WpfNotifications.Messages.csproj">
+      <Project>{C6886AF1-F89F-498C-833A-BDA50753CC7A}</Project>
+      <Name>WpfNotifications.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\WpfNotifications\WpfNotifications.csproj">
       <Project>{F9305B63-3C20-45B7-ABEC-903F89235E8C}</Project>
       <Name>WpfNotifications</Name>

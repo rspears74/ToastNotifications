@@ -5,7 +5,7 @@ using System.Windows.Threading;
 using WpfNotifications;
 using WpfNotifications.Core;
 using WpfNotifications.Lifetime;
-using WpfNotifications.Notifications;
+using WpfNotifications.Messages;
 using WpfNotifications.Position;
 
 namespace ConfigurationExample

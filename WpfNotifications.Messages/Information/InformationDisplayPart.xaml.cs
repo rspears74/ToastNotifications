@@ -1,15 +1,16 @@
 ﻿using System.Windows;
+using WpfNotifications.Core;
 
-namespace WpfNotifications.Notifications
+namespace WpfNotifications.Messages.Information
 {
     /// <summary>
     /// Interaction logic for InformationDisplayPart.xaml
     /// </summary>
-    public partial class InformationDisplayPart
+    public partial class InformationDisplayPart : NotificationDisplayPart
     {
-        private readonly Information _viewModel;
+        private readonly InformationNotification _viewModel;
 
-        public InformationDisplayPart(Information information)
+        public InformationDisplayPart(InformationNotification information)
         {
             InitializeComponent();
 

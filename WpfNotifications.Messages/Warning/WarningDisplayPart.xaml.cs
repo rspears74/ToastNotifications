@@ -1,16 +1,16 @@
 ﻿using System.Windows;
 using WpfNotifications.Core;
 
-namespace WpfNotifications.Notifications
+namespace WpfNotifications.Messages.Warning
 {
     /// <summary>
     /// Interaction logic for WarningDisplayPart.xaml
     /// </summary>
     public partial class WarningDisplayPart : NotificationDisplayPart
     {
-        private readonly Warning _viewModel;
+        private readonly WarningNotification _viewModel;
 
-        public WarningDisplayPart(Warning warning)
+        public WarningDisplayPart(WarningNotification warning)
         {
             InitializeComponent();
 

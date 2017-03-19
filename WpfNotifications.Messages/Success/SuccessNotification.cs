@@ -1,14 +1,14 @@
 ﻿using WpfNotifications.Core;
 
-namespace WpfNotifications.Notifications
+namespace WpfNotifications.Messages.Success
 {
-    public class Success : NotificationBase
+    public class SuccessNotification : NotificationBase
     {
         private NotificationDisplayPart _displayPart;
 
         public string Message { get; }
         
-        public Success(string message)
+        public SuccessNotification(string message)
         {
             Message = message;
         }

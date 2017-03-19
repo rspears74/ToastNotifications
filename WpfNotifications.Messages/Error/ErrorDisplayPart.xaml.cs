@@ -1,16 +1,16 @@
 ﻿using System.Windows;
 using WpfNotifications.Core;
 
-namespace WpfNotifications.Notifications
+namespace WpfNotifications.Messages.Error
 {
     /// <summary>
     /// Interaction logic for ErrorDisplayPart.xaml
     /// </summary>
     public partial class ErrorDisplayPart : NotificationDisplayPart
     {
-        private readonly Error _viewModel;
+        private readonly ErrorNotification _viewModel;
 
-        public ErrorDisplayPart(Error error)
+        public ErrorDisplayPart(ErrorNotification error)
         {
             InitializeComponent();
 

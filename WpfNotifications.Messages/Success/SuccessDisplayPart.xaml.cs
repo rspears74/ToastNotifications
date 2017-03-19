@@ -1,16 +1,16 @@
 ﻿using System.Windows;
 using WpfNotifications.Core;
 
-namespace WpfNotifications.Notifications
+namespace WpfNotifications.Messages.Success
 {
     /// <summary>
     /// Interaction logic for SuccessDisplayPart.xaml
     /// </summary>
     public partial class SuccessDisplayPart : NotificationDisplayPart
     {
-        private readonly Success _viewModel;
+        private readonly SuccessNotification _viewModel;
 
-        public SuccessDisplayPart(Success success)
+        public SuccessDisplayPart(SuccessNotification success)
         {
             InitializeComponent();
 

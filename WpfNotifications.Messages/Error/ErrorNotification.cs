@@ -1,14 +1,14 @@
 ﻿using WpfNotifications.Core;
 
-namespace WpfNotifications.Notifications
+namespace WpfNotifications.Messages.Error
 {
-    public class Error : NotificationBase
+    public class ErrorNotification : NotificationBase
     {
         private NotificationDisplayPart _displayPart;
 
         public string Message { get; }
         
-        public Error(string message)
+        public ErrorNotification(string message)
         {
             Message = message;
         }

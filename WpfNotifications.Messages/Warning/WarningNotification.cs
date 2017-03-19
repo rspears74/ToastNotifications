@@ -1,14 +1,14 @@
 ﻿using WpfNotifications.Core;
 
-namespace WpfNotifications.Notifications
+namespace WpfNotifications.Messages.Warning
 {
-    public class Warning : NotificationBase
+    public class WarningNotification : NotificationBase
     {
         private NotificationDisplayPart _displayPart;
 
         public string Message { get; }
         
-        public Warning(string message)
+        public WarningNotification(string message)
         {
             Message = message;
         }
