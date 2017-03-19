@@ -20,13 +20,13 @@ namespace BasicUsageExample
                     parentWindow: Application.Current.MainWindow, 
                     corner: Corner.TopRight, 
                     offsetX: 10,  
-                    offsetY: 10);
+                    offsetY: 25);
 
                 cfg.LifetimeSupervisor = new TimeBasedLifetimeSupervisor(
                     notificationLifetime: TimeSpan.FromSeconds(3), 
                     maximumNotificationCount: MaximumNotificationCount.FromCount(5));
 
-                cfg.Dispatcher = Application.Current.MainWindow.Dispatcher;
+                cfg.Dispatcher = Application.Current.Dispatcher;
             });
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using WpfNotifications.Core;
 using WpfNotifications.Display;
 using WpfNotifications.Lifetime;
@@ -32,8 +33,18 @@ namespace WpfNotifications
                 if (_configuration != null)
                     return;
 
-                var cfg = new NotifierConfiguration();
+                var cfg = new NotifierConfiguration
+                {
+                    Dispatcher = Application.Current.Dispatcher
+                };
                 _configureAction(cfg);
+
+                if (cfg.LifetimeSupervisor == null)
+                    throw new ArgumentNullException(nameof(cfg.LifetimeSupervisor), "Missing configuration argument");
+
+                if (cfg.PositionProvider == null)
+                    throw new ArgumentNullException(nameof(cfg.PositionProvider), "Missing configuration argument");
+
                 _configuration = cfg;
                 _lifetimeSupervisor = cfg.LifetimeSupervisor;
                 _lifetimeSupervisor.UseDispatcher(cfg.Dispatcher);
