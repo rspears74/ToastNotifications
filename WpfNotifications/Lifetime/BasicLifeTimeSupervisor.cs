@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Threading;
 using WpfNotifications.Core;
 
 namespace WpfNotifications.Lifetime
 {
-    internal class BasicNotificationsLifeTimeSupervisor : INotificationsLifeTimeSupervisor
+    public class BasicLifetimeSupervisor : INotificationsLifetimeSupervisor
     {
         private readonly int _maximumNotificationCount;
         private NotificationsList _notifications;
 
-        public BasicNotificationsLifeTimeSupervisor(int maximumNotificationCount)
+        public BasicLifetimeSupervisor(MaximumNotificationCount maximumNotificationCount)
         {
-            _maximumNotificationCount = maximumNotificationCount;
+            _maximumNotificationCount = maximumNotificationCount.Count;
 
             _notifications = new NotificationsList();
         }
@@ -54,6 +55,10 @@ namespace WpfNotifications.Lifetime
         {
             _notifications?.Clear();
             _notifications = null;
+        }
+
+        public void UseDispatcher(Dispatcher dispatcher)
+        {
         }
 
         public event EventHandler<ShowNotificationEventArgs> ShowNotificationRequested;

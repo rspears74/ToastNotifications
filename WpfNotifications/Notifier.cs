@@ -11,7 +11,7 @@ namespace WpfNotifications
 
         private readonly Action<NotifierConfiguration> _configureAction;
         private NotifierConfiguration _configuration;
-        private INotificationsLifeTimeSupervisor _lifeTimeSupervisor;
+        private INotificationsLifetimeSupervisor _lifetimeSupervisor;
         private NotificationsDisplaySupervisor _displaySupervisor;
 
         public Notifier(Action<NotifierConfiguration> configureAction)
@@ -22,7 +22,7 @@ namespace WpfNotifications
         public void Notify<T>(Func<INotification> createNotificationFunc)
         {
             Configure();
-            _lifeTimeSupervisor.PushNotification(createNotificationFunc());
+            _lifetimeSupervisor.PushNotification(createNotificationFunc());
         }
 
         private void Configure()
@@ -35,13 +35,10 @@ namespace WpfNotifications
                 var cfg = new NotifierConfiguration();
                 _configureAction(cfg);
                 _configuration = cfg;
+                _lifetimeSupervisor = cfg.LifetimeSupervisor;
+                _lifetimeSupervisor.UseDispatcher(cfg.Dispatcher);
 
-                if (cfg.NotificationLifeTime == NotifierConfiguration.NeverEndingNotification)
-                    _lifeTimeSupervisor = new BasicNotificationsLifeTimeSupervisor(cfg.MaximumNotificationCount);
-                else
-                    _lifeTimeSupervisor = new TimeBasedNotificationsLifeTimeSupervisor(cfg.NotificationLifeTime, cfg.MaximumNotificationCount, cfg.Dispatcher);
-                
-                _displaySupervisor = new NotificationsDisplaySupervisor(cfg.Dispatcher, cfg.PositionProvider, _lifeTimeSupervisor);
+                _displaySupervisor = new NotificationsDisplaySupervisor(cfg.Dispatcher, cfg.PositionProvider, cfg.LifetimeSupervisor);
             }
         }
 
@@ -58,7 +55,7 @@ namespace WpfNotifications
                 _configuration?.PositionProvider?.Dispose();
                 _displaySupervisor?.Dispose();
 
-                _lifeTimeSupervisor?.Dispose();
+                _lifetimeSupervisor?.Dispose();
             }
         }
     }

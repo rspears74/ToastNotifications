@@ -12,19 +12,19 @@ namespace WpfNotifications.Display
         private readonly object _syncRoot = new object();
         private readonly Dispatcher _dispatcher;
         private readonly IPositionProvider _positionProvider;
-        private INotificationsLifeTimeSupervisor _lifeTimeSupervisor;
+        private INotificationsLifetimeSupervisor _lifetimeSupervisor;
         private NotificationsWindow _window;
 
         public NotificationsDisplaySupervisor(Dispatcher dispatcher, 
             IPositionProvider positionProvider, 
-            INotificationsLifeTimeSupervisor lifeTimeSupervisor)
+            INotificationsLifetimeSupervisor lifetimeSupervisor)
         {
             _dispatcher = dispatcher;
             _positionProvider = positionProvider;
-            _lifeTimeSupervisor = lifeTimeSupervisor;
+            _lifetimeSupervisor = lifetimeSupervisor;
 
-            _lifeTimeSupervisor.ShowNotificationRequested += LifeTimeSupervisorOnShowNotificationRequested;
-            _lifeTimeSupervisor.CloseNotificationRequested += LifeTimeSupervisorOnCloseNotificationRequested;
+            _lifetimeSupervisor.ShowNotificationRequested += LifetimeSupervisorOnShowNotificationRequested;
+            _lifetimeSupervisor.CloseNotificationRequested += LifetimeSupervisorOnCloseNotificationRequested;
 
             _positionProvider.UpdatePositionRequested += PositionProviderOnUpdatePositionRequested;
         }
@@ -51,7 +51,7 @@ namespace WpfNotifications.Display
 
         private void InternalClose(INotification notification)
         {
-            _lifeTimeSupervisor.CloseNotification(notification);
+            _lifetimeSupervisor.CloseNotification(notification);
             UpdateWindowPosition();
         }
 
@@ -102,12 +102,12 @@ namespace WpfNotifications.Display
             _window.Show();
         }
 
-        private void LifeTimeSupervisorOnShowNotificationRequested(object sender, ShowNotificationEventArgs eventArgs)
+        private void LifetimeSupervisorOnShowNotificationRequested(object sender, ShowNotificationEventArgs eventArgs)
         {
             DisplayNotification(eventArgs.Notification);
         }
 
-        private void LifeTimeSupervisorOnCloseNotificationRequested(object sender, CloseNotificationEventArgs eventArgs)
+        private void LifetimeSupervisorOnCloseNotificationRequested(object sender, CloseNotificationEventArgs eventArgs)
         {
             CloseNotification(eventArgs.Notification);
         }
@@ -122,12 +122,12 @@ namespace WpfNotifications.Display
             _window?.Close();
             _window = null;
 
-            _lifeTimeSupervisor.ShowNotificationRequested -= LifeTimeSupervisorOnShowNotificationRequested;
-            _lifeTimeSupervisor.CloseNotificationRequested -= LifeTimeSupervisorOnCloseNotificationRequested;
+            _lifetimeSupervisor.ShowNotificationRequested -= LifetimeSupervisorOnShowNotificationRequested;
+            _lifetimeSupervisor.CloseNotificationRequested -= LifetimeSupervisorOnCloseNotificationRequested;
 
             _positionProvider.UpdatePositionRequested -= PositionProviderOnUpdatePositionRequested;
 
-            _lifeTimeSupervisor = null;
+            _lifetimeSupervisor = null;
         }
     }
 }

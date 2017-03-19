@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Threading;
 using WpfNotifications;
 using WpfNotifications.Core;
+using WpfNotifications.Lifetime;
 using WpfNotifications.Notifications;
 using WpfNotifications.Position;
 
@@ -19,34 +20,48 @@ namespace ConfigurationExample
             Application.Current.MainWindow.Closing += MainWindowOnClosing;
         }
 
-        private Notifier CreateNotifier(Corner corner, PositionProviderType relation, NotificationLifetime lifetime)
+        public Notifier CreateNotifier(Corner corner, PositionProviderType relation, NotificationLifetime lifetime)
         {
             _notifier?.Dispose();
             _notifier = null;
 
             return new Notifier(cfg =>
             {
-                IPositionProvider positionProvider = null;
-                switch (relation)
-                {
-                    case PositionProviderType.Window:
-                        positionProvider = new WindowPositionProvider(Application.Current.MainWindow, corner, 0, 0);
-                        break;
-                    case PositionProviderType.Screen:
-                        positionProvider = new PrimaryScreenPositionProvider(corner, 5, 5);
-                        break;
-                    case PositionProviderType.Control:
+                cfg.PositionProvider = CreatePositionProvider(corner, relation);
+                cfg.LifetimeSupervisor = CreateLifetimeSupervisor(lifetime);
+                cfg.Dispatcher = Dispatcher.CurrentDispatcher;
+            });
+        }
+
+        private static INotificationsLifetimeSupervisor CreateLifetimeSupervisor(NotificationLifetime lifetime)
+        {
+            if (lifetime == NotificationLifetime.Basic)
+                return new BasicLifetimeSupervisor(MaximumNotificationCount.UnlimitedNotifications());
+
+            return new TimeBasedLifetimeSupervisor(TimeSpan.FromSeconds(3), MaximumNotificationCount.FromCount(5));
+        }
+
+        private static IPositionProvider CreatePositionProvider(Corner corner, PositionProviderType relation)
+        {
+            switch (relation)
+            {
+                case PositionProviderType.Window:
+                    {
+                        return new WindowPositionProvider(Application.Current.MainWindow, corner, 0, 0);
+                    }
+                case PositionProviderType.Screen:
+                    {
+                        return new PrimaryScreenPositionProvider(corner, 5, 5);
+                    }
+                case PositionProviderType.Control:
+                    {
                         var mainWindow = Application.Current.MainWindow as MainWindow;
                         var trackingElement = mainWindow?.TrackingElement;
-                        positionProvider = new ControlPositionProvider(mainWindow, trackingElement, corner, 5, 5);
-                        break;
-                }
+                        return new ControlPositionProvider(mainWindow, trackingElement, corner, 5, 5);
+                    }
+            }
 
-                cfg.PositionProvider = positionProvider;
-                cfg.Dispatcher = Dispatcher.CurrentDispatcher;
-                cfg.NotificationLifeTime = lifetime == NotificationLifetime.Basic ? NotifierConfiguration.NeverEndingNotification : TimeSpan.FromSeconds(5);
-                cfg.MaximumNotificationCount = 5;  //NotifierConfiguration.UnlimitedNotifications;
-            });
+            throw new InvalidEnumArgumentException();
         }
 
         internal void ShowWarning(string message)

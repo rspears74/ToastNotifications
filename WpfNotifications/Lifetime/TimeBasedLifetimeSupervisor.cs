@@ -6,35 +6,30 @@ using WpfNotifications.Utilities;
 
 namespace WpfNotifications.Lifetime
 {
-    internal class TimeBasedNotificationsLifeTimeSupervisor : INotificationsLifeTimeSupervisor
+    public class TimeBasedLifetimeSupervisor : INotificationsLifetimeSupervisor
     {
-        private readonly TimeSpan _notificationLifeTime;
+        private readonly TimeSpan _notificationLifetime;
         private readonly int _maximumNotificationCount;
-        private readonly Dispatcher _dispatcher;
-        private NotificationsList _notifications;
-        private readonly IInterval _interval;
-        private DispatcherTimer _timer;
 
-        public TimeBasedNotificationsLifeTimeSupervisor(TimeSpan notificationLifeTime, int maximumNotificationCount, Dispatcher dispatcher)
+        private Dispatcher _dispatcher;
+        private NotificationsList _notifications;
+        private IInterval _interval;
+
+        public TimeBasedLifetimeSupervisor(TimeSpan notificationLifetime, MaximumNotificationCount maximumNotificationCount)
         {
-            _maximumNotificationCount = maximumNotificationCount;
             _notifications = new NotificationsList();
 
-            _notificationLifeTime = notificationLifeTime;
-            _maximumNotificationCount = maximumNotificationCount;
-            _dispatcher = dispatcher;
+            _notificationLifetime = notificationLifetime;
+            _maximumNotificationCount = maximumNotificationCount.Count;
 
             _notifications =  new NotificationsList();
             _interval = new Interval();
-            _timer = new DispatcherTimer(DispatcherPriority.Normal, dispatcher);
-            _timer.Interval = TimeSpan.FromMilliseconds(200);
-            _timer.Tick += OnTimerTick;
         }
 
         public void PushNotification(INotification notification)
         {
-            if (_timer.IsEnabled == false)
-                _timer.Start();
+            if (_interval.IsRunning == false)
+                TimerStart();
 
             int numberOfNotificationsToClose = Math.Max(_notifications.Count - _maximumNotificationCount, 0);
 
@@ -60,10 +55,15 @@ namespace WpfNotifications.Lifetime
 
         public void Dispose()
         {
-            _timer.Stop();
-            _timer = null;
+            _interval.Stop();
+            _interval = null;
             _notifications?.Clear();
             _notifications = null;
+        }
+
+        public void UseDispatcher(Dispatcher dispatcher)
+        {
+            _dispatcher = dispatcher;
         }
 
         protected virtual void RequestShowNotification(ShowNotificationEventArgs e)
@@ -76,12 +76,22 @@ namespace WpfNotifications.Lifetime
             CloseNotificationRequested?.Invoke(this, e);
         }
 
-        private void OnTimerTick(object sender, EventArgs e)
+        private void TimerStart()
+        {
+            _interval.Invoke(TimeSpan.FromMilliseconds(200), OnTimerTick, _dispatcher);
+        }
+
+        private void TimerStop()
+        {
+            _interval.Stop();
+        }
+
+        private void OnTimerTick()
         {
             TimeSpan now = DateTimeNow.Local.TimeOfDay;
 
             var notificationsToRemove = _notifications
-                .Where(x => x.Value.CreateTime + _notificationLifeTime <= now)
+                .Where(x => x.Value.CreateTime + _notificationLifetime <= now)
                 .Select(x => x.Value)
                 .ToList();
 
@@ -89,9 +99,8 @@ namespace WpfNotifications.Lifetime
                 CloseNotification(n.Notification);
 
             if (_notifications.IsEmpty)
-                _timer.Stop();
+                TimerStop();
         }
-
 
         public event EventHandler<ShowNotificationEventArgs> ShowNotificationRequested;
         public event EventHandler<CloseNotificationEventArgs> CloseNotificationRequested;

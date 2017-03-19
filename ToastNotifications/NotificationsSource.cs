@@ -27,7 +27,7 @@ namespace ToastNotifications
             NotificationMessages = new ObservableCollection<NotificationViewModel>();
 
             MaximumNotificationCount = 5;
-            NotificationLifeTime = TimeSpan.FromSeconds(6);
+            NotificationLifetime = TimeSpan.FromSeconds(6);
 
             _timer = new DispatcherTimer(DispatcherPriority.Normal, dispatcher);
             _timer.Interval = TimeSpan.FromMilliseconds(200);
@@ -37,7 +37,7 @@ namespace ToastNotifications
 
         public long MaximumNotificationCount { get; set; }
 
-        public TimeSpan NotificationLifeTime { get; set; }
+        public TimeSpan NotificationLifetime { get; set; }
 
         public bool IsOpen
         {
@@ -67,11 +67,11 @@ namespace ToastNotifications
 
         private void TimerOnTick(object sender, EventArgs eventArgs)
         {
-            if (NotificationLifeTime == NeverEndingNotification)
+            if (NotificationLifetime == NeverEndingNotification)
                 return;
 
             var currentTime = DateTime.Now;
-            var itemsToRemove = NotificationMessages.Where(x => (currentTime - x.CreateTime) >= NotificationLifeTime)
+            var itemsToRemove = NotificationMessages.Where(x => (currentTime - x.CreateTime) >= NotificationLifetime)
                                                     .Select(x => x.Id)
                                                     .ToList();
 

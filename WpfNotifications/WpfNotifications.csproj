@@ -58,10 +58,12 @@
     <Compile Include="Display\NotificationsWindow.xaml.cs">
       <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lifetime\BasicNotificationsLifeTimeSupervisor.cs" />
+    <Compile Include="Lifetime\BasicLifetimeSupervisor.cs" />
     <Compile Include="Lifetime\CloseNotificationEventArgs.cs" />
-    <Compile Include="Lifetime\INotificationsLifeTimeSupervisor.cs" />
+    <Compile Include="Lifetime\INotificationsLifetimeSupervisor.cs" />
+    <Compile Include="Lifetime\MaximumNotificationCount.cs" />
     <Compile Include="Lifetime\ShowNotificationEventArgs.cs" />
+    <Compile Include="Lifetime\TimeBasedLifetimeSupervisor.cs" />
     <Compile Include="Notifications\ErrorExtensions.cs" />
     <Compile Include="Notifications\InformationExtensions.cs" />
     <Compile Include="Notifications\SuccessDisplayPart.xaml.cs">
@@ -91,7 +93,6 @@
     <Compile Include="Core\IPositionProvider.cs" />
     <Compile Include="Core\NotificationDisplayPart.cs" />
     <Compile Include="Lifetime\NotificationMetaData.cs" />
-    <Compile Include="Lifetime\TimeBasedNotificationsLifeTimeSupervisor.cs" />
     <Compile Include="Lifetime\NotificationsList.cs" />
     <Compile Include="Notifier.cs" />
     <Compile Include="Core\NotifierConfiguration.cs" />
