@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToastNotifications", "ToastNotifications\ToastNotifications.csproj", "{60C456A0-FE6C-4C00-9E6D-B51A47E5A4F3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicUsageExample", "Examples\BasicUsageExample\BasicUsageExample.csproj", "{D63A8852-2028-4E0E-8FF1-F95D0066843F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{54B8B2C6-9CB6-430A-AF71-6C8EAB6461A1}"
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{60C456A0-FE6C-4C00-9E6D-B51A47E5A4F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60C456A0-FE6C-4C00-9E6D-B51A47E5A4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60C456A0-FE6C-4C00-9E6D-B51A47E5A4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60C456A0-FE6C-4C00-9E6D-B51A47E5A4F3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D63A8852-2028-4E0E-8FF1-F95D0066843F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D63A8852-2028-4E0E-8FF1-F95D0066843F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D63A8852-2028-4E0E-8FF1-F95D0066843F}.Release|Any CPU.ActiveCfg = Release|Any CPU
