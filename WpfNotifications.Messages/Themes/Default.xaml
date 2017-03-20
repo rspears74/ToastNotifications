@@ -37,6 +37,11 @@
 
     <Style TargetType="Border" x:Key="NotificationBorder">
         <Setter Property="Padding" Value="5" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Opacity="0.5" ShadowDepth="1" BlurRadius="2" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="Rectangle" x:Key="NotificationIcon">
