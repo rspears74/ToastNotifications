@@ -5,76 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:core="clr-namespace:WpfNotifications.Core;assembly=WpfNotifications"
              mc:Ignorable="d" >
-    <core:NotificationDisplayPart.Resources>
-        <Canvas x:Key="CloseIcon" Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
-            <Path Width="31.6666" Height="31.6667" Canvas.Left="22.1666" Canvas.Top="22.1667" Stretch="Fill" Fill="#FF000000" Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z "/>
-        </Canvas>
 
-        <Style TargetType="Border" x:Key="NotificationBorder">
-            <Setter Property="Padding" Value="5" />
-            <Setter Property="Background" Value="#f5a300" />
-        </Style>
-
-        <Style TargetType="Rectangle" x:Key="NotificationIcon">
-            <Setter Property="Width" Value="24"/>
-            <Setter Property="Height" Value="24"/>
-            <Setter Property="Margin" Value="0,5,5,5" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Fill" Value="White"/>
-        </Style>
-
-        <Style TargetType="TextBlock" x:Key="NotificationText">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Width" Value="200" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-            <Setter Property="Margin" Value="5,0,0,0" />
-        </Style>
-
-        <Style TargetType="{x:Type Button}" x:Key="NotificationCloseButton">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="#FFF" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="SnapsToDevicePixels" Value="True" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FFB219" />
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#A87000" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="Rectangle" x:Key="CloseButtonIcon">
-            <Setter Property="Width" Value="10"/>
-            <Setter Property="Height" Value="10"/>
-            <Setter Property="Fill" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
-        </Style>
-    </core:NotificationDisplayPart.Resources>
-    <Border Style="{DynamicResource NotificationBorder}">
+    <Border Style="{DynamicResource NotificationBorder}" Background="{DynamicResource WarningColorBrush}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto"  />
             </Grid.ColumnDefinitions>
-            <Viewbox Width="24" Height="24">
-                <Canvas Width="24" Height="24">
-                    <Path Data="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" Fill="White" />
-                </Canvas>
-            </Viewbox>
+            <Rectangle Width="24" Height="24">
+                <Rectangle.Fill>
+                    <VisualBrush Visual="{StaticResource WarningIcon}" />
+                </Rectangle.Fill>
+            </Rectangle>
             <TextBlock Text="{Binding Message, Mode=OneTime}" Style="{StaticResource NotificationText}" Grid.Column="1"  />
             <Button x:Name="CloseButton" Style="{StaticResource NotificationCloseButton}"  Padding="1" Grid.Column="2" Click="OnClose">
                 <Rectangle Style="{StaticResource CloseButtonIcon}" Margin="2">
