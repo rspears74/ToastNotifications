@@ -8,11 +8,11 @@ It's extendable, it gives you possibility to create custom and interactive notif
 [![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)
 [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/)
 [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications.Messages/)
-[![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/develop-v2/license)
+[![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/master-v2/license)
 
 ## Demo
 
-[![demo](https://raw.githubusercontent.com/raflop/ToastNotifications/develop-v2/Media/demo.gif)](https://raw.githubusercontent.com/raflop/ToastNotifications/develop-v2/Media/demo.gif)
+[![demo](https://raw.githubusercontent.com/raflop/ToastNotifications/master-v2/Media/demo.gif)](https://raw.githubusercontent.com/raflop/ToastNotifications/master-v2/Media/demo.gif)
 
 ## Usage
 
