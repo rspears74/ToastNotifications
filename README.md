@@ -14,16 +14,14 @@ It's extendable, it gives you possibility to create custom and interactive notif
 ## Usage
 
 ### 1 Install nuget:
-[ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
-
-[ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
+[ToastNotifications](https://www.nuget.org/packages/ToastNotifications/) and [ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
 
 ```
 Install-Package ToastNotifications
 Install-Package ToastNotifications.Messages
 ```
-ToastNotifications contains base mechanism that allows show custom notifications
-ToastNotifications.Messages contains basic notifications messages like error, information, warning, success. It's not required in case you want use your own messages.
+ToastNotifications contains base mechanisms that allows display notifications in WPF applications.
+ToastNotifications.Messages contains basic notifications messages like error, information, warning, success. It's not required in case you want create your own messages.
 
 ### 2 Import ToastNotifications theme in App.xaml
 ```xml
