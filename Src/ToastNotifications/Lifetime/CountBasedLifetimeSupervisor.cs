@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Threading;
-using WpfNotifications.Core;
+using ToastNotifications.Core;
 
-namespace WpfNotifications.Lifetime
+namespace ToastNotifications.Lifetime
 {
-    public class BasicLifetimeSupervisor : INotificationsLifetimeSupervisor
+    public class CountBasedLifetimeSupervisor : INotificationsLifetimeSupervisor
     {
         private readonly int _maximumNotificationCount;
         private NotificationsList _notifications;
 
-        public BasicLifetimeSupervisor(MaximumNotificationCount maximumNotificationCount)
+        public CountBasedLifetimeSupervisor(MaximumNotificationCount maximumNotificationCount)
         {
             _maximumNotificationCount = maximumNotificationCount.Count;
 

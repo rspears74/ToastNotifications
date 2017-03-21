@@ -65,12 +65,12 @@
     <Compile Include="Display\NotificationsWindow.xaml.cs">
       <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Lifetime\BasicLifetimeSupervisor.cs" />
     <Compile Include="Lifetime\CloseNotificationEventArgs.cs" />
+    <Compile Include="Lifetime\CountBasedLifetimeSupervisor.cs" />
     <Compile Include="Lifetime\INotificationsLifetimeSupervisor.cs" />
     <Compile Include="Lifetime\MaximumNotificationCount.cs" />
     <Compile Include="Lifetime\ShowNotificationEventArgs.cs" />
-    <Compile Include="Lifetime\TimeBasedLifetimeSupervisor.cs" />
+    <Compile Include="Lifetime\TimeAndCountBasedLifetimeSupervisor.cs" />
     <Compile Include="Position\ControlPositionProvider.cs" />
     <Compile Include="Position\Corner.cs" />
     <Compile Include="Position\PrimaryScreenPositionProvider.cs" />

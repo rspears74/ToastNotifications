@@ -2,11 +2,11 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Threading;
-using WpfNotifications;
-using WpfNotifications.Core;
-using WpfNotifications.Lifetime;
-using WpfNotifications.Messages;
-using WpfNotifications.Position;
+using ToastNotifications;
+using ToastNotifications.Core;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace ConfigurationExample
 {
@@ -36,9 +36,9 @@ namespace ConfigurationExample
         private static INotificationsLifetimeSupervisor CreateLifetimeSupervisor(NotificationLifetime lifetime)
         {
             if (lifetime == NotificationLifetime.Basic)
-                return new BasicLifetimeSupervisor(MaximumNotificationCount.UnlimitedNotifications());
+                return new CountBasedLifetimeSupervisor(MaximumNotificationCount.UnlimitedNotifications());
 
-            return new TimeBasedLifetimeSupervisor(TimeSpan.FromSeconds(3), MaximumNotificationCount.FromCount(5));
+            return new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(3), MaximumNotificationCount.FromCount(5));
         }
 
         private static IPositionProvider CreatePositionProvider(Corner corner, PositionProviderType relation)

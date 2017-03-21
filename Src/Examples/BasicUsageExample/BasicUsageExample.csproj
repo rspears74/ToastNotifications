@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>toast-notifications-icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -98,14 +101,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WpfNotifications.Messages\WpfNotifications.Messages.csproj">
-      <Project>{c6886af1-f89f-498c-833a-bda50753cc7a}</Project>
-      <Name>WpfNotifications.Messages</Name>
+    <ProjectReference Include="..\..\ToastNotifications.Messages\ToastNotifications.Messages.csproj">
+      <Project>{4de2f314-b19f-423e-92d8-7d3a7d9acea2}</Project>
+      <Name>ToastNotifications.Messages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\WpfNotifications\WpfNotifications.csproj">
-      <Project>{f9305b63-3c20-45b7-abec-903f89235e8c}</Project>
-      <Name>WpfNotifications</Name>
+    <ProjectReference Include="..\..\ToastNotifications\ToastNotifications.csproj">
+      <Project>{4a8879fc-9a6e-4904-910b-5c13fa5ed5be}</Project>
+      <Name>ToastNotifications</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="toast-notifications-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

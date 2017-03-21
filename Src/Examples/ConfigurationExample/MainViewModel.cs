@@ -1,5 +1,5 @@
 using System.ComponentModel;
-using WpfNotifications.Position;
+using ToastNotifications.Position;
 
 namespace ConfigurationExample
 {

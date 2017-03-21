@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel;
 using System.Windows;
-using WpfNotifications;
-using WpfNotifications.Lifetime;
-using WpfNotifications.Messages;
-using WpfNotifications.Position;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace BasicUsageExample
 {
@@ -22,7 +22,7 @@ namespace BasicUsageExample
                     offsetX: 10,  
                     offsetY: 25);
 
-                cfg.LifetimeSupervisor = new TimeBasedLifetimeSupervisor(
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                     notificationLifetime: TimeSpan.FromSeconds(3), 
                     maximumNotificationCount: MaximumNotificationCount.FromCount(5));
 

@@ -6,7 +6,7 @@ using WpfNotifications.Utilities;
 
 namespace WpfNotifications.Lifetime
 {
-    public class TimeBasedLifetimeSupervisor : INotificationsLifetimeSupervisor
+    public class TimeAndCountBasedLifetimeSupervisor : INotificationsLifetimeSupervisor
     {
         private readonly TimeSpan _notificationLifetime;
         private readonly int _maximumNotificationCount;
@@ -15,7 +15,7 @@ namespace WpfNotifications.Lifetime
         private NotificationsList _notifications;
         private IInterval _interval;
 
-        public TimeBasedLifetimeSupervisor(TimeSpan notificationLifetime, MaximumNotificationCount maximumNotificationCount)
+        public TimeAndCountBasedLifetimeSupervisor(TimeSpan notificationLifetime, MaximumNotificationCount maximumNotificationCount)
         {
             _notifications = new NotificationsList();
 

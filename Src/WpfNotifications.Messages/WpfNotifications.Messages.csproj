@@ -111,12 +111,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WpfNotifications\WpfNotifications.csproj">
-      <Project>{f9305b63-3c20-45b7-abec-903f89235e8c}</Project>
-      <Name>WpfNotifications</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
