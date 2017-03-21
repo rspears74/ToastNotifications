@@ -1,137 +1,82 @@
-# ToastNotifications
-####Toast notifications for WPF with MVVM support.
+# ToastNotifications V2
+#### Toast notifications for WPF
 
-ToastNotifications allows you to show Success, Information, Warning and Error animated notifications, which will disappear after several seconds.
+ToastNotifications allows to create and display rich notifications in WPF applications.
+It's highly configurable with set of builtin options like positions, behaviours, themes and many others.
+It's extendable, it gives you possibility to create custom and interactive notifications in simply manner.
 
-Feel free to modify and use this code with MIT license.
-
-[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)  [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/) [![MIT license](https://img.shields.io/badge/mit-license-blue.svg)](https://github.com/raflop/ToastNotifications/blob/master/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)  [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/) [![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/develop-v2/LICENSE)
 
 ## Demo
 
-[![demo](http://devcrew.pl/github/toastnotifications/demo.gif)](http://devcrew.pl/github/toastnotifications/demo.gif)
+[![demo](https://raw.githubusercontent.com/raflop/ToastNotifications/develop-v2/Media/demo.gif)](https://raw.githubusercontent.com/raflop/ToastNotifications/develop-v2/Media/demo.gif)
 
-## Installation
-
-Install via [Nuget Package ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
+Install via nuget:
+[ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
+[ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
 
 ```
 Install-Package ToastNotifications
+Install-Package ToastNotifications.Messages
 ```
 
 ## Usage
 
-### XAML
+### 1 Install nuget:
+[ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
+[ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
 
+```
+Install-Package ToastNotifications
+Install-Package ToastNotifications.Messages
+```
+ToastNotifications contains base mechanism that allows show custom notifications
+ToastNotifications.Messages contains basic notifications messages like error, information, warning, success. It's not required in case you want use your own messages.
+
+### 2 Import ToastNotifications theme in App.xaml
 ```xml
-<!- import namespace -->
-xmlns:toast="clr-namespace:ToastNotifications;assembly=ToastNotifications"
-
-<!- add NotificationTray to place in view where notifications should appear
-    and bind to NotificationsSource in viewmodel -->
-<toast:NotificationTray NotificationsSource="{Binding NotificationSource}"
-                        PopupFlowDirection="RightUp"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Right" />
+<Application.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Application.Resources>
 ```
 
-### C&#35;
-
+### 3 Create Notifier instance
 ```csharp
-// Create viewmodel for window with property of type NotificationsSource.
-// NotificationsSource is used to show nofifications in ToastNotifications control
-
-public class MainViewModel : INotifyPropertyChanged
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
+/* * */
+Notifier notifier = new Notifier(cfg =>
 {
-    private NotificationsSource _notificationSource;
+    cfg.PositionProvider = new WindowPositionProvider(
+        parentWindow: Application.Current.MainWindow,
+        corner: Corner.TopRight,
+        offsetX: 10,  
+        offsetY: 25);
 
-    public NotificationsSource NotificationSource
-    {
-        get { return _notificationSource; }
-        set
-        {
-            _notificationSource = value;
-            OnPropertyChanged("NotificationSource");
-        }
-    }
+    cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+        notificationLifetime: TimeSpan.FromSeconds(3),
+        maximumNotificationCount: MaximumNotificationCount.FromCount(5));
 
-    public MainViewModel()
-    {
-        NotificationSource = new NotificationsSource();
-    }
+    cfg.Dispatcher = Application.Current.Dispatcher;
+});
+```
 
-    public void ShowInformation(string message)
-    {
-        NotificationSource.Show(message, NotificationType.Information);
-    }
-
-    public void ShowSuccess(string message)
-    {
-        NotificationSource.Show(message, NotificationType.Success);
-    }
-
-    public void ShowWarning(string message)
-    {
-        NotificationSource.Show(message, NotificationType.Warning);
-    }
-
-    public void ShowError(string message)
-    {
-        NotificationSource.Show(message, NotificationType.Error);
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName = null)
-    {
-        var handler = PropertyChanged;
-        handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-}
+### 4 Use provided messages
+```csharp
+using ToastNotifications.Messages;
+/* * */
+notifier.ShowInformation(message);
+notifier.ShowSuccess(message);
+notifier.ShowWarning(message);
+notifier.ShowError(message);
 ```
 
 ## Configuration
-
-### Flow direction
-
-Set direction in which new notifications will appear. It's relative to notification control position.
-Avalaible options are:
-
-* LeftDown  (default)
-* RightDown
-* LeftUp
-* RightUp
-
-```xml
-<toast:NotificationTray PopupFlowDirection="LeftDown" />
-```
-
-### NotificationSource properties
-
-```csharp
-public MainViewModel()
-{
-    NotificationSource = new NotificationsSource
-    {
-        MaximumNotificationCount = 4,
-
-        NotificationLifeTime = TimeSpan.FromSeconds(3)
-    };
-}
-```
-
-Set `MaximumNotificationCount = NotificationsSource.UnlimitedNotifications` to allow unlimited number of notifications.
-
-Set `NotificationLifeTime = NotificationsSource.NeverEndingNotification` to make notifications opened until user close them.
-
-### NotificationSource dispatcher
-
-```csharp
-    NotificationSource = new NotificationsSource(); // use default Dispatcher.CurrentDispatcher
-    NotificationSource = new NotificationsSource(specifiedDispatcher); // use different dispatcher
-```
-
-
 
 ## Additional informations
 

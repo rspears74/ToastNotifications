@@ -14,7 +14,7 @@ namespace BasicUsageExample
 
         public MainViewModel()
         {
-            _notifier = new Notifier(cfg =>
+            Notifier _notifier = new Notifier(cfg =>
             {
                 cfg.PositionProvider = new WindowPositionProvider(
                     parentWindow: Application.Current.MainWindow, 
