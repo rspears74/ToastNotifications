@@ -2,10 +2,10 @@
 #### Toast notifications for WPF
 
 ToastNotifications allows to create and display rich notifications in WPF applications.
-It's highly configurable with set of builtin options like positions, behaviours, themes and many others.
+It's highly configurable with set of built-in options like positions, behaviours, themes and many others.
 It's extendable, it gives you possibility to create custom and interactive notifications in simply manner.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)  
+[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)
 [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/)
 [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications.Messages/)
 [![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/develop-v2/license)
@@ -23,10 +23,10 @@ It's extendable, it gives you possibility to create custom and interactive notif
 Install-Package ToastNotifications
 Install-Package ToastNotifications.Messages
 ```
-ToastNotifications contains base mechanisms that allows display notifications in WPF applications.
-ToastNotifications.Messages contains basic notifications messages like error, information, warning, success. It's not required in case you want create your own messages.
+ToastNotifications contains base mechanisms used to show notifications in WPF applications.
+ToastNotifications.Messages contains basic notifications messages like error, information, warning, success. It's not required in case you want to create your own messages.
 
-### 2 Import ToastNotifications theme in App.xaml
+### 2 Import ToastNotifications.Messages theme in App.xaml
 ```xml
 <Application.Resources>
     <ResourceDictionary>
@@ -72,9 +72,9 @@ notifier.ShowError(message);
 ## Configuration
 ### Notification position
 
-Using position provider option you can specify the place where notifications should appear.
+Using PositionProvider option you can specify the place where notifications should appear.
 
-There are three builtin position providers
+There are three built-in position providers
  * WindowPositionProvider - notifications are tracking position of specified window.
  * PrimaryScreenPositionProvider - notifications appears always on main screen in specified position.
  * ControlPositionProvider - notifications are tracking position of specified UI control.
@@ -118,6 +118,43 @@ Notifier notifier = new Notifier(cfg =>
     /* * */
 });
 ```
+### Notification lifetime
+
+Using LifetimeSupervisor option you can specify when notifications will disappear.
+
+There are two built-in position providers
+ * CountBasedLifetimeSupervisor - notifications will disappear only when number of notifications on screen will be equal to MaximumNotificationCount
+ * TimeAndCountBasedLifetimeSupervisor - notifications will disappear when the number of notifications on screen will be more than MaximumNotificationCount or the notification will be on screen longer than specified amount of time
+
+If you need unlimited number of notifications on screen use CountBasedLifetimeSupervisor with MaximumNotificationCount.UnlimitedNotifications() option
+
+```csharp
+// CountBasedLifetimeSupervisor
+Notifier notifier = new Notifier(cfg =>
+{
+    cfg.LifetimeSupervisor = new CountBasedLifetimeSupervisor(maximumNotificationCount: MaximumNotificationCount.UnlimitedNotifications());
+    /* * */
+});
+
+// PrimaryScreenPositionProvider
+Notifier notifier = new Notifier(cfg =>
+{
+    cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+        notificationLifetime: TimeSpan.FromSeconds(3),
+        maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+    /* * */
+});
+
+```
+### Dispatcher
+Set the dispatcher used by library
+```csharp
+Notifier notifier = new Notifier(cfg =>
+{
+    cfg.Dispatcher = Application.Current.Dispatcher;
+    /* * */
+});
+```
 
 ## Additional informations
 
@@ -148,8 +185,6 @@ Public key token is e89d9d7314a7c797
 ```
 
 ## Contributors
-
-v1:
 
 Uwy (https://github.com/Uwy)
 
