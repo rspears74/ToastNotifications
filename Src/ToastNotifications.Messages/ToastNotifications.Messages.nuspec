@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$-rc</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <description>Toast notifications for WPF</description>
+    <summary>Toast notifications for WPF</summary>
+    <releaseNotes>
+    </releaseNotes>
+    <language>en-US</language>
+    <licenseUrl>https://github.com/raflop/ToastNotifications/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/raflop/ToastNotifications</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/raflop/ToastNotifications/master-v2/Media/project-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright © Rafał Łopatka 2017</copyright>
+    <references></references>
+    <tags>WPF notifications, Toast notifications, XAML notifications, c# notifications, UI notifications, ToastNotifications, toasts, messages, notifications, WPF, XAML, UI, notify, message, toast</tags>
+    <dependencies>
+        <dependency id="ToastNotifications" version="2.0" />
+    </dependencies>
+  </metadata>
+</package>
