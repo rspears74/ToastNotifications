@@ -19,7 +19,7 @@
     <references></references>
     <tags>WPF notifications, Toast notifications, XAML notifications, c# notifications, UI notifications, ToastNotifications, toasts, messages, notifications, WPF, XAML, UI, notify, message, toast</tags>
     <dependencies>
-        <dependency id="ToastNotifications" version="2.0" />
+        <dependency id="ToastNotifications" version="2.0-rc" />
     </dependencies>
   </metadata>
 </package>
