@@ -5,7 +5,7 @@ ToastNotifications allows to create and display rich notifications in WPF applic
 It's highly configurable with set of builtin options like positions, behaviours, themes and many others.
 It's extendable, it gives you possibility to create custom and interactive notifications in simply manner.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)  [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/) [![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/develop-v2/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)  [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/) [![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/develop-v2/license)
 
 ## Demo
 
