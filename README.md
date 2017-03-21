@@ -11,19 +11,11 @@ It's extendable, it gives you possibility to create custom and interactive notif
 
 [![demo](https://raw.githubusercontent.com/raflop/ToastNotifications/develop-v2/Media/demo.gif)](https://raw.githubusercontent.com/raflop/ToastNotifications/develop-v2/Media/demo.gif)
 
-Install via nuget:
-[ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
-[ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
-
-```
-Install-Package ToastNotifications
-Install-Package ToastNotifications.Messages
-```
-
 ## Usage
 
 ### 1 Install nuget:
 [ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
+
 [ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
 
 ```
