@@ -1,11 +1,14 @@
-# ToastNotifications V2
+# ToastNotifications v2
 #### Toast notifications for WPF
 
 ToastNotifications allows to create and display rich notifications in WPF applications.
 It's highly configurable with set of builtin options like positions, behaviours, themes and many others.
 It's extendable, it gives you possibility to create custom and interactive notifications in simply manner.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)  [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/) [![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/develop-v2/license)
+[![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)  
+[![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/)
+[![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications.Messages/)
+[![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/develop-v2/license)
 
 ## Demo
 
@@ -46,7 +49,7 @@ Notifier notifier = new Notifier(cfg =>
         parentWindow: Application.Current.MainWindow,
         corner: Corner.TopRight,
         offsetX: 10,  
-        offsetY: 25);
+        offsetY: 10);
 
     cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
         notificationLifetime: TimeSpan.FromSeconds(3),
@@ -67,6 +70,54 @@ notifier.ShowError(message);
 ```
 
 ## Configuration
+### Notification position
+
+Using position provider option you can specify the place where notifications should appear.
+
+There are three builtin position providers
+ * WindowPositionProvider - notifications are tracking position of specified window.
+ * PrimaryScreenPositionProvider - notifications appears always on main screen in specified position.
+ * ControlPositionProvider - notifications are tracking position of specified UI control.
+
+ Options like "corner", "offsetX", "offsetY" are used to set distance beetween notifications area and specified corner of Window/Screen/Control.
+
+```csharp
+// WindowPositionProvider
+Notifier notifier = new Notifier(cfg =>
+{
+    cfg.PositionProvider = new WindowPositionProvider(
+        parentWindow: Application.Current.MainWindow,
+        corner: Corner.TopRight,
+        offsetX: 10,  
+        offsetY: 10);
+    /* * */
+});
+
+// PrimaryScreenPositionProvider
+Notifier notifier = new Notifier(cfg =>
+{
+    cfg.PositionProvider = new PrimaryScreenPositionProvider(
+        corner: Corner.BottomRight,
+        offsetX: 10,  
+        offsetY: 10);
+    /* * */
+});
+
+// PrimaryScreenPositionProvider
+Notifier notifier = new Notifier(cfg =>
+{
+    MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+    FrameworkElement trackingElement = mainWindow?.TrackingElement;
+
+    cfg.PositionProvider = new ControlPositionProvider(
+        parentWindow: mainWindow,
+        trackingElement: trackingElement,
+        corner: Corner.BottomLeft,
+        offsetX: 10,  
+        offsetY: 10);
+    /* * */
+});
+```
 
 ## Additional informations
 
@@ -97,6 +148,8 @@ Public key token is e89d9d7314a7c797
 ```
 
 ## Contributors
+
+v1:
 
 Uwy (https://github.com/Uwy)
 
