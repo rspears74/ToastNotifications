@@ -74,7 +74,7 @@ notifier.ShowError(message);
 
 Using PositionProvider option you can specify the place where notifications should appear.
 
-There are three built-in position providers
+There are three built-in position providers:
  * WindowPositionProvider - notifications are tracking position of specified window.
  * PrimaryScreenPositionProvider - notifications appears always on main screen in specified position.
  * ControlPositionProvider - notifications are tracking position of specified UI control.
@@ -122,7 +122,7 @@ Notifier notifier = new Notifier(cfg =>
 
 Using LifetimeSupervisor option you can specify when notifications will disappear.
 
-There are two built-in position providers
+There are two built-in lifetime supervisors:
  * CountBasedLifetimeSupervisor - notifications will disappear only when number of notifications on screen will be equal to MaximumNotificationCount
  * TimeAndCountBasedLifetimeSupervisor - notifications will disappear when the number of notifications on screen will be more than MaximumNotificationCount or the notification will be on screen longer than specified amount of time
 
