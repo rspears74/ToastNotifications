@@ -136,7 +136,7 @@ Notifier notifier = new Notifier(cfg =>
     /* * */
 });
 
-// PrimaryScreenPositionProvider
+// TimeAndCountBasedLifetimeSupervisor
 Notifier notifier = new Notifier(cfg =>
 {
     cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
