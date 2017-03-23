@@ -49,7 +49,11 @@ namespace ToastNotifications
                 _lifetimeSupervisor = cfg.LifetimeSupervisor;
                 _lifetimeSupervisor.UseDispatcher(cfg.Dispatcher);
 
-                _displaySupervisor = new NotificationsDisplaySupervisor(cfg.Dispatcher, cfg.PositionProvider, cfg.LifetimeSupervisor);
+                _displaySupervisor = new NotificationsDisplaySupervisor(
+                    cfg.Dispatcher, 
+                    cfg.PositionProvider, 
+                    cfg.LifetimeSupervisor, 
+                    cfg.DisplayOptions);
             }
         }
 
@@ -65,7 +69,6 @@ namespace ToastNotifications
                 _disposed = true;
                 _configuration?.PositionProvider?.Dispose();
                 _displaySupervisor?.Dispose();
-
                 _lifetimeSupervisor?.Dispose();
             }
         }

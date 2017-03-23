@@ -6,7 +6,7 @@ namespace ToastNotifications.Core
     public interface IPositionProvider : IDisposable
     {
         Window ParentWindow { get; }
-        Point GetPosition(double notificationPopupWidth, double notificationPopupHeight);
+        Point GetPosition(double actualPopupWidth, double actualPopupHeight);
         double GetHeight();
         EjectDirection EjectDirection { get; }
         event EventHandler UpdatePositionRequested;

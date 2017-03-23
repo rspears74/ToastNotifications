@@ -36,9 +36,9 @@ namespace ConfigurationExample
         private static INotificationsLifetimeSupervisor CreateLifetimeSupervisor(NotificationLifetime lifetime)
         {
             if (lifetime == NotificationLifetime.Basic)
-                return new CountBasedLifetimeSupervisor(MaximumNotificationCount.UnlimitedNotifications());
+                return new CountBasedLifetimeSupervisor(MaximumNotificationCount.FromCount(5));
 
-            return new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(3), MaximumNotificationCount.FromCount(5));
+            return new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(3), MaximumNotificationCount.UnlimitedNotifications());
         }
 
         private static IPositionProvider CreatePositionProvider(Corner corner, PositionProviderType relation)

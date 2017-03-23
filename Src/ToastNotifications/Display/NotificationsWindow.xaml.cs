@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Threading;
 using ToastNotifications.Core;
 
@@ -56,6 +57,12 @@ namespace ToastNotifications.Display
         public double GetHeight()
         {
             return Height;
+        }
+
+        internal void SetDisplayOptions(DisplayOptions displayOptions)
+        {
+            Topmost = displayOptions.TopMost;
+            NotificationsList.Width = displayOptions.Width;
         }
     }
 }

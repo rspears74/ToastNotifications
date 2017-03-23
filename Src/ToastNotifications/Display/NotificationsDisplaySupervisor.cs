@@ -12,16 +12,20 @@ namespace ToastNotifications.Display
         private readonly object _syncRoot = new object();
         private readonly Dispatcher _dispatcher;
         private readonly IPositionProvider _positionProvider;
+        private readonly DisplayOptions _displayOptions;
+
         private INotificationsLifetimeSupervisor _lifetimeSupervisor;
         private NotificationsWindow _window;
 
         public NotificationsDisplaySupervisor(Dispatcher dispatcher, 
             IPositionProvider positionProvider, 
-            INotificationsLifetimeSupervisor lifetimeSupervisor)
+            INotificationsLifetimeSupervisor lifetimeSupervisor,
+            DisplayOptions displayOptions)
         {
             _dispatcher = dispatcher;
             _positionProvider = positionProvider;
             _lifetimeSupervisor = lifetimeSupervisor;
+            _displayOptions = displayOptions;
 
             _lifetimeSupervisor.ShowNotificationRequested += LifetimeSupervisorOnShowNotificationRequested;
             _lifetimeSupervisor.CloseNotificationRequested += LifetimeSupervisorOnCloseNotificationRequested;
@@ -68,6 +72,7 @@ namespace ToastNotifications.Display
                     return;
 
                 _window = new NotificationsWindow(_positionProvider.ParentWindow);
+                _window.SetDisplayOptions(_displayOptions);
                 _window.MinHeight = _positionProvider.GetHeight();
                 _window.Height = _positionProvider.GetHeight();
                 _window.SetPosition(new Point(Double.NaN, Double.NaN));
