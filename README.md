@@ -156,6 +156,16 @@ Notifier notifier = new Notifier(cfg =>
 });
 ```
 
+### Additional display options
+```csharp
+Notifier notifier = new Notifier(cfg =>
+{
+    cfg.DisplayOptions.TopMost = true; // set the option to show notifications over other windows
+    cfg.DisplayOptions.Width = 250; // set the notifications width
+    /* * */
+});
+```
+
 ## Additional informations
 
 ### Strongly named assembly
