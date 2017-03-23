@@ -10,11 +10,11 @@ namespace BasicUsageExample
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private Notifier _notifier;
+        private readonly Notifier _notifier;
 
         public MainViewModel()
         {
-            Notifier _notifier = new Notifier(cfg =>
+            _notifier = new Notifier(cfg =>
             {
                 cfg.PositionProvider = new WindowPositionProvider(
                     parentWindow: Application.Current.MainWindow, 
@@ -55,7 +55,8 @@ namespace BasicUsageExample
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null) handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (handler != null)
+                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
