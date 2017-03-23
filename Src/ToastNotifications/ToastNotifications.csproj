@@ -59,6 +59,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\DisplayOptions.cs" />
     <Compile Include="Notifier.cs" />
     <Compile Include="Utilities\DateTimeNow.cs" />
     <Compile Include="Utilities\DateTimeProvider.cs" />

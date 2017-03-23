@@ -30,7 +30,7 @@ namespace ToastNotifications.Position
             SetEjectDirection(corner);
         }
 
-        public Point GetPosition(double notificationPopupWidth, double notificationPopupHeight)
+        public Point GetPosition(double actualPopupWidth, double actualPopupHeight)
         {
             var source = PresentationSource.FromVisual(ParentWindow);
             if (source?.CompositionTarget == null)
@@ -42,13 +42,13 @@ namespace ToastNotifications.Position
             switch (_corner)
             {
                 case Corner.TopRight:
-                    return GetPositionForTopRightCorner(location, notificationPopupWidth, notificationPopupHeight);
+                    return GetPositionForTopRightCorner(location, actualPopupWidth, actualPopupHeight);
                 case Corner.TopLeft:
-                    return GetPositionForTopLeftCorner(location, notificationPopupWidth, notificationPopupHeight);
+                    return GetPositionForTopLeftCorner(location, actualPopupWidth, actualPopupHeight);
                 case Corner.BottomRight:
-                    return GetPositionForBottomRightCorner(location, notificationPopupWidth, notificationPopupHeight);
+                    return GetPositionForBottomRightCorner(location, actualPopupWidth, actualPopupHeight);
                 case Corner.BottomLeft:
-                    return GetPositionForBottomLeftCorner(location, notificationPopupWidth, notificationPopupHeight);
+                    return GetPositionForBottomLeftCorner(location, actualPopupWidth, actualPopupHeight);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -76,24 +76,24 @@ namespace ToastNotifications.Position
             }
         }
 
-        private Point GetPositionForBottomLeftCorner(Point location, double notificationPopupWidth, double notificationPopupHeight)
+        private Point GetPositionForBottomLeftCorner(Point location, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(location.X + _offsetX, location.Y + _element.ActualHeight - _offsetY - notificationPopupHeight);
+            return new Point(location.X + _offsetX, location.Y + _element.ActualHeight - _offsetY - actualPopupHeight);
         }
 
-        private Point GetPositionForBottomRightCorner(Point location, double notificationPopupWidth, double notificationPopupHeight)
+        private Point GetPositionForBottomRightCorner(Point location, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(location.X + _element.ActualWidth - _offsetX - notificationPopupWidth, location.Y + _element.ActualHeight - _offsetY - notificationPopupHeight);
+            return new Point(location.X + _element.ActualWidth - _offsetX - actualPopupWidth, location.Y + _element.ActualHeight - _offsetY - actualPopupHeight);
         }
 
-        private Point GetPositionForTopLeftCorner(Point location, double notificationPopupWidth, double notificationPopupHeight)
+        private Point GetPositionForTopLeftCorner(Point location, double actualPopupWidth, double actualPopupHeight)
         {
             return new Point(location.X + _offsetX, location.Y + _offsetY);
         }
 
-        private Point GetPositionForTopRightCorner(Point location, double notificationPopupWidth, double notificationPopupHeight)
+        private Point GetPositionForTopRightCorner(Point location, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(location.X + _element.ActualWidth - _offsetX - notificationPopupWidth, location.Y + _offsetY);
+            return new Point(location.X + _element.ActualWidth - _offsetX - actualPopupWidth, location.Y + _offsetY);
         }
 
         public void Dispose()
