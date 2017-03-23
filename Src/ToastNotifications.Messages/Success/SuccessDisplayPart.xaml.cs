@@ -8,9 +8,9 @@ namespace ToastNotifications.Messages.Success
     /// </summary>
     public partial class SuccessDisplayPart : NotificationDisplayPart
     {
-        private readonly SuccessNotification _viewModel;
+        private readonly SuccessMessage _viewModel;
 
-        public SuccessDisplayPart(SuccessNotification success)
+        public SuccessDisplayPart(SuccessMessage success)
         {
             InitializeComponent();
 

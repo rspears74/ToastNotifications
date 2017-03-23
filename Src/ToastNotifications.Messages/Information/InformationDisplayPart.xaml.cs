@@ -8,9 +8,9 @@ namespace ToastNotifications.Messages.Information
     /// </summary>
     public partial class InformationDisplayPart : NotificationDisplayPart
     {
-        private readonly InformationNotification _viewModel;
+        private readonly InformationMessage _viewModel;
 
-        public InformationDisplayPart(InformationNotification information)
+        public InformationDisplayPart(InformationMessage information)
         {
             InitializeComponent();
 

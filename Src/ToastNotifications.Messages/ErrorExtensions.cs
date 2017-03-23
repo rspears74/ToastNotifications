@@ -1,4 +1,5 @@
-﻿using ToastNotifications.Messages.Error;
+﻿using ToastNotifications.Messages.Core;
+using ToastNotifications.Messages.Error;
 
 namespace ToastNotifications.Messages
 {
@@ -6,7 +7,12 @@ namespace ToastNotifications.Messages
     {
         public static void ShowError(this Notifier notifier, string message)
         {
-            notifier.Notify<ErrorNotification>(() => new ErrorNotification(message));
+            notifier.Notify<ErrorMessage>(() => new ErrorMessage(message));
+        }
+
+        public static void ShowError(this Notifier notifier, string message, MessageOptions displayOptions)
+        {
+            notifier.Notify<ErrorMessage>(() => new ErrorMessage(message, displayOptions));
         }
     }
 }

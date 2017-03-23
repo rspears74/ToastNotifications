@@ -11,7 +11,7 @@
 # ToastNotifications v2
 #### Toast notifications for WPF
 
-ToastNotifications allows to create and display rich notifications in WPF applications.
+ToastNotifications allows you to create and display rich notifications in WPF applications.
 It's highly configurable with set of built-in options like positions, behaviours, themes and many others.
 It's extendable, it gives you possibility to create custom and interactive notifications in simply manner.
 
@@ -174,6 +174,19 @@ Notifier notifier = new Notifier(cfg =>
     cfg.DisplayOptions.Width = 250; // set the notifications width
     /* * */
 });
+```
+
+### Message options
+```csharp
+
+using ToastNotifications.Messages.Core;
+/* * */
+var options =  new MessageOptions{
+    FontSize = 30, // set notification font size
+    ShowCloseButton = false // set the option to show or hide notification close button
+};
+/* * */
+notifier.ShowError(message, options);
 ```
 
 ## Additional informations

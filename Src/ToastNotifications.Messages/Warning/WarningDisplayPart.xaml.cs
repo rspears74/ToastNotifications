@@ -8,9 +8,9 @@ namespace ToastNotifications.Messages.Warning
     /// </summary>
     public partial class WarningDisplayPart : NotificationDisplayPart
     {
-        private readonly WarningNotification _viewModel;
+        private readonly WarningMessage _viewModel;
 
-        public WarningDisplayPart(WarningNotification warning)
+        public WarningDisplayPart(WarningMessage warning)
         {
             InitializeComponent();
 

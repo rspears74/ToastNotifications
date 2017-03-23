@@ -63,12 +63,14 @@
     <Compile Include="Error\ErrorDisplayPart.xaml.cs">
       <DependentUpon>ErrorDisplayPart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Error\ErrorNotification.cs" />
+    <Compile Include="Error\ErrorMessage.cs" />
     <Compile Include="InformationExtensions.cs" />
     <Compile Include="Information\InformationDisplayPart.xaml.cs">
       <DependentUpon>InformationDisplayPart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Information\InformationNotification.cs" />
+    <Compile Include="Information\InformationMessage.cs" />
+    <Compile Include="Core\MessageBase.cs" />
+    <Compile Include="Core\MessageOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,12 +88,12 @@
     <Compile Include="Success\SuccessDisplayPart.xaml.cs">
       <DependentUpon>SuccessDisplayPart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Success\SuccessNotification.cs" />
+    <Compile Include="Success\SuccessMessage.cs" />
     <Compile Include="WarningExtensions.cs" />
     <Compile Include="Warning\WarningDisplayPart.xaml.cs">
       <DependentUpon>WarningDisplayPart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Warning\WarningNotification.cs" />
+    <Compile Include="Warning\WarningMessage.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

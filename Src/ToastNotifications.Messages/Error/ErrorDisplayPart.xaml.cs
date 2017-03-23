@@ -8,9 +8,9 @@ namespace ToastNotifications.Messages.Error
     /// </summary>
     public partial class ErrorDisplayPart : NotificationDisplayPart
     {
-        private readonly ErrorNotification _viewModel;
+        private readonly ErrorMessage _viewModel;
 
-        public ErrorDisplayPart(ErrorNotification error)
+        public ErrorDisplayPart(ErrorMessage error)
         {
             InitializeComponent();
 
