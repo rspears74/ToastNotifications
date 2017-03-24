@@ -26,15 +26,20 @@ It's extendable, it gives you possibility to create custom and interactive notif
 
 ## Usage
 
-### 1 Install nuget:
+### 1 Install via nuget:
 [ToastNotifications](https://www.nuget.org/packages/ToastNotifications/) and [ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
 
 ```
 Install-Package ToastNotifications
 Install-Package ToastNotifications.Messages
 ```
-ToastNotifications contains base mechanisms used to show notifications in WPF applications.
-ToastNotifications.Messages contains basic notifications messages like error, information, warning, success. It's not required in case you want to create your own messages.
+
+ToastNotifications v2 is plugin oriented.
+*Nugget "ToastNotifications"* is a core, which contains only main mechanisms for creating and displaying notifications.
+Predefined messages and other not key functionalities are provided by separate nuggets.
+
+*Nugget ToastNotifications.Messages* contains basic messages like error, information, warning, success.
+It's not required in case you want to create your own messages.
 
 ### 2 Import ToastNotifications.Messages theme in App.xaml
 ```xml
@@ -133,7 +138,7 @@ Notifier notifier = new Notifier(cfg =>
 Using LifetimeSupervisor option you can specify when notifications will disappear.
 
 There are two built-in lifetime supervisors:
- * CountBasedLifetimeSupervisor - notifications will disappear only when number of notifications on screen will be equal to MaximumNotificationCount
+ * CountBasedLifetimeSupervisor - notifications will disappear only when number of notifications on screen will be  will be more than MaximumNotificationCount
  * TimeAndCountBasedLifetimeSupervisor - notifications will disappear when the number of notifications on screen will be more than MaximumNotificationCount or the notification will be on screen longer than specified amount of time
 
 If you need unlimited number of notifications on screen use CountBasedLifetimeSupervisor with MaximumNotificationCount.UnlimitedNotifications() option
@@ -156,9 +161,11 @@ Notifier notifier = new Notifier(cfg =>
 });
 
 ```
+
 ### Dispatcher
-Set the dispatcher used by library
 ```csharp
+Set the dispatcher used by library
+
 Notifier notifier = new Notifier(cfg =>
 {
     cfg.Dispatcher = Application.Current.Dispatcher;
@@ -166,7 +173,7 @@ Notifier notifier = new Notifier(cfg =>
 });
 ```
 
-### Additional display options
+### Notifier DisplayOptions
 ```csharp
 Notifier notifier = new Notifier(cfg =>
 {
@@ -184,6 +191,11 @@ using ToastNotifications.Messages.Core;
 var options =  new MessageOptions{
     FontSize = 30, // set notification font size
     ShowCloseButton = false // set the option to show or hide notification close button
+    NotificationClickAction = n => // set the callback for notification click event
+    {
+        n.Close(); // call Close method to remove notification
+        notifier.ShowSuccess("clicked!");
+    }
 };
 /* * */
 notifier.ShowError(message, options);

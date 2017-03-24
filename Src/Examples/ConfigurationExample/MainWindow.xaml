@@ -1,11 +1,11 @@
 ﻿<Window x:Class="ConfigurationExample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:configurationExample="clr-namespace:ConfigurationExample"
+        xmlns:utilities="clr-namespace:ConfigurationExample.Utilities"
         Title="MainWindow" Height="700" Width="1024">
     <Grid>
         <Grid.Resources>
-            <configurationExample:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+            <utilities:EnumBooleanConverter x:Key="EnumBooleanConverter" />
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -73,6 +73,7 @@
                 <Button Content="Success" Margin="5" Width="100" Click="Button_ShowSuccessClick" />
                 <Button Content="Warning" Margin="5" Width="100" Click="Button_ShowWarningClick" />
                 <Button Content="Error" Margin="5" Width="100" Click="Button_ShowErrorClick" />
+                <Button Content="Customized" Margin="5" Width="100" Click="Button_ShowCustomizedMessageClick" />
             </StackPanel>
         </Grid>
    

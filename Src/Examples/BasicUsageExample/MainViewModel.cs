@@ -50,10 +50,7 @@ namespace BasicUsageExample
 
         public void ShowError(string message)
         {
-            _notifier.ShowError(message, new ToastNotifications.Messages.Core.MessageOptions{
-                FontSize = 30,
-                ShowCloseButton = false
-            });
+            _notifier.ShowError(message);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

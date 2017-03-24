@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace ConfigurationExample
 {
@@ -17,46 +16,34 @@ namespace ConfigurationExample
         private int _count = 0;
         private readonly MainViewModel _vm;
 
-        private void ShowInternal(NotificationType type, string message)
+        private string CreateMessage()
         {
-            message = string.IsNullOrWhiteSpace(message) ? $"{_count++} {type.ToString()}" : message;
-            switch (type)
-            {
-                case NotificationType.Error:
-                    _vm.ShowError(message);
-                    break;
-                case NotificationType.Information:
-                    _vm.ShowInformation(message);
-                    break;
-                case NotificationType.Success:
-                    _vm.ShowSuccess(message);
-                    break;
-                case NotificationType.Warning:
-                    _vm.ShowWarning(message);
-                    break;
-                default:
-                    throw new NotImplementedException($"Following notification type isn't supported : {type}");
-            }
+            return $"{_count++} {SampleTextInput.Text}";
         }
 
         private void Button_ShowInformationClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Information, this.SampleTextInput.Text);
+            _vm.ShowInformation(CreateMessage());
         }
 
         private void Button_ShowSuccessClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Success, this.SampleTextInput.Text);
+            _vm.ShowSuccess(CreateMessage());
         }
 
         private void Button_ShowWarningClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Warning, this.SampleTextInput.Text);
+            _vm.ShowWarning(CreateMessage());
         }
 
         private void Button_ShowErrorClick(object sender, RoutedEventArgs e)
         {
-            this.ShowInternal(NotificationType.Error, this.SampleTextInput.Text);
+            _vm.ShowError(CreateMessage());
+        }
+
+        private void Button_ShowCustomizedMessageClick(object sender, RoutedEventArgs e)
+        {
+            _vm.ShowCustomizedMessage(CreateMessage());
         }
     }
 }

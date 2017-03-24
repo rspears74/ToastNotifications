@@ -64,15 +64,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnumBooleanConverter.cs" />
+    <Compile Include="Utilities\EnumBooleanConverter.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NotificationLifetime.cs" />
-    <Compile Include="NotificationService.cs" />
-    <Compile Include="NotificationType.cs" />
-    <Compile Include="PositionProviderType.cs" />
+    <Compile Include="Utilities\NotificationLifetimeType.cs" />
+    <Compile Include="Utilities\PositionProviderType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

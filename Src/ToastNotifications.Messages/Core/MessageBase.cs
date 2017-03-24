@@ -1,4 +1,6 @@
-﻿using ToastNotifications.Core;
+﻿using System.Windows;
+using System.Windows.Input;
+using ToastNotifications.Core;
 
 namespace ToastNotifications.Messages.Core
 {
@@ -20,8 +22,23 @@ namespace ToastNotifications.Messages.Core
         private TDisplayPart Configure()
         {
             TDisplayPart displayPart = CreateDisplayPart();
+
+            displayPart.Unloaded += OnUnloaded;
+            displayPart.MouseLeftButtonDown += OnLeftMouseDown;
+
             UpdateDisplayOptions(displayPart, _options);
             return displayPart;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            _displayPart.MouseLeftButtonDown -= OnLeftMouseDown;
+            _displayPart.Unloaded -= OnUnloaded;
+        }
+
+        private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            _options.NotificationClickAction?.Invoke(this);
         }
 
         protected abstract void UpdateDisplayOptions(TDisplayPart displayPart, MessageOptions options);

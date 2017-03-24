@@ -123,5 +123,8 @@
   <ItemGroup>
     <Resource Include="toast-notifications-icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

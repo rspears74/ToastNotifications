@@ -1,4 +1,4 @@
-﻿namespace ConfigurationExample
+﻿namespace ConfigurationExample.Utilities
 {
     public enum PositionProviderType
     {
