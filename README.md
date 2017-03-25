@@ -35,6 +35,7 @@ Install-Package ToastNotifications.Messages
 ```
 
 ToastNotifications v2 is plugin oriented.
+
 *Nugget "ToastNotifications"* is a core, which contains only main mechanisms for creating and displaying notifications.
 Predefined messages and other not key functionalities are provided by separate nuggets.
 
