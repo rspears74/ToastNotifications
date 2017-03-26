@@ -17,10 +17,10 @@ It's extendable, it gives you possibility to create custom and interactive notif
 
 [![Build status](https://ci.appveyor.com/api/projects/status/xk2e7g0nxfh5v92q?svg=true)](https://ci.appveyor.com/project/raflop/toastnotifications)
 [![Code Climate](https://codeclimate.com/github/raflop/ToastNotifications/badges/gpa.svg)](https://codeclimate.com/github/raflop/ToastNotifications)
+[![Issue Count](https://codeclimate.com/github/raflop/ToastNotifications/badges/issue_count.svg)](https://codeclimate.com/github/raflop/ToastNotifications)
 [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications/)
 [![Nuget install](https://img.shields.io/badge/nuget-install-green.svg)](https://www.nuget.org/packages/ToastNotifications.Messages/)
 [![LGPL v3 license](https://img.shields.io/badge/license-LGPLV3-blue.svg)](https://github.com/raflop/ToastNotifications/blob/master-v2/license)
-
 
 ## Demo
 
