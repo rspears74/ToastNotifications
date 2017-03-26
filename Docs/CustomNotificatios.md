@@ -14,10 +14,10 @@
 ## Creating custom notifications
 [Example code](https://github.com/raflop/ToastNotifications/tree/master-v2/Src/Examples/CustomNotificationsExample)
 
-### 1 Install nuget:
-[ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
+### 1 Install nugget:
+[Install-Package ToastNotifications](https://www.nuget.org/packages/ToastNotifications/)
 
-### 2 Create notifier
+### 2 Create notifier instance
 ```csharp
 using ToastNotifications;
 using ToastNotifications.Lifetime;
@@ -32,7 +32,7 @@ Notifier notifier = new Notifier(cfg =>
 
 ### 3 Create CustomNotification class
 
-This class will contains all data needed to display in notification in this example: "Title" and "Message".
+This class will contains all data needed to display in notification in this example its just a "Title" property but it can be anything even commands for buttons.
 CustomNotification derrive from "NotificationBase" which is base class for all notifications in ToastNotifications v2.
 Every notification is composed of two things:
 * Its data - properties used for data binding
