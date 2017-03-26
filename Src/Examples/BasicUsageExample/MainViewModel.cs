@@ -33,6 +33,11 @@ namespace BasicUsageExample
             });
         }
 
+        public void OnUnloaded()
+        {
+            _notifier.Dispose();
+        }
+
         public void ShowInformation(string message)
         {
             _notifier.ShowInformation(message);

@@ -85,6 +85,13 @@ notifier.ShowWarning(message);
 notifier.ShowError(message);
 ```
 
+### 5 Dispose notifier when it's no longer needed
+```csharp
+/* * */
+notifier.Dispose();
+```
+
+
 ## Configuration
 ### Notification position
 

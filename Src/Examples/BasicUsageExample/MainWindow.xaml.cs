@@ -12,10 +12,17 @@ namespace BasicUsageExample
         {
             InitializeComponent();
             DataContext = _vm = new MainViewModel();
+
+            Unloaded += OnUnload;
         }
 
         private int _count = 0;
         private readonly MainViewModel _vm;
+
+        private void OnUnload(object sender, RoutedEventArgs e)
+        {
+            _vm.OnUnloaded();
+        }
 
         private void Button_ShowInformationClick(object sender, RoutedEventArgs e)
         {
