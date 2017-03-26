@@ -26,6 +26,8 @@ It's extendable, it gives you possibility to create custom and interactive notif
 
 ## Usage
 
+[Example code](https://github.com/raflop/ToastNotifications/tree/master-v2/Src/Examples/BasicUsageExample)
+
 ### 1 Install via nuget:
 [ToastNotifications](https://www.nuget.org/packages/ToastNotifications/) and [ToastNotifications.Messages](https://www.nuget.org/packages/ToastNotifications.Messages/)
 
@@ -99,8 +101,11 @@ notifier.Dispose();
 * [Configuration](https://github.com/raflop/ToastNotifications/blob/master-v2/Docs/Configuration.md)
   ToastNotifications v2 has lots of configuration options for its position, lifetime, messages and many others, this document describe them all.
 
+* [Creating custom notifications](https://github.com/raflop/ToastNotifications/blob/master-v2/Docs/CustomNotificatios.md)
+  This document describes how to create your own notifications.
+
 * [Strongly named assemblies](https://github.com/raflop/ToastNotifications/blob/master-v2/Docs/StronglyNamedAssemblies.md)
-  ToastNotifications v2 assembies are signed.
+  ToastNotifications v2 assembies are signed. Read this doc for more details.
 
 ## Contributors
 
