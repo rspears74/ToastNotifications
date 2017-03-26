@@ -38,13 +38,3 @@ d0426dce
 
 Public key token is e89d9d7314a7c797
 ```
-
-## Contributors
-
-Uwy (https://github.com/Uwy)
-
-Andy Li (https://github.com/oneandy)
-
-BrainCrumbz (https://github.com/BrainCrumbz)
-
-wdcossey (https://github.com/wdcossey)

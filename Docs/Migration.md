@@ -10,7 +10,7 @@
 
 # ToastNotifications v2
 
-#### Migration from v1
+#### Migrating from v1
 
 ToastNotifications v2 is completely new implementation and it's not compatibile with version 1.
 Instead of creating NotificationsSource and NotificationTray now you have single service called Notifier.

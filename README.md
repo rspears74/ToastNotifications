@@ -100,7 +100,7 @@ notifier.Dispose();
   ToastNotifications v2 has lots of configuration options for its position, lifetime, messages and many others, this document describe them all.
 
 * [Strongly named assemblies](https://github.com/raflop/ToastNotifications/blob/master-v2/Docs/StronglyNamedAssemblies.md)
-    ToastNotifications v2 has lots of configuration options for its position, lifetime, messages and many others, this document describe them all.
+  ToastNotifications v2 assembies are signed.
 
 ## Contributors
 
