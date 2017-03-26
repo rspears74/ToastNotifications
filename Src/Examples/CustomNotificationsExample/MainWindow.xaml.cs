@@ -1,4 +1,6 @@
 ﻿using CustomNotificationsExample.CustomMessage;
+using CustomNotificationsExample.MahAppsNotification;
+using MahApps.Metro.Controls;
 using System;
 using System.Windows;
 using ToastNotifications;
@@ -10,7 +12,7 @@ namespace CustomNotificationsExample
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         private Notifier _notifier;
 
@@ -40,8 +42,14 @@ namespace CustomNotificationsExample
         private void CustomCommand_Click(object sender, RoutedEventArgs e)
         {
             _notifier.ShowCustomCommand("Custom command example",
-                confirmAction: n => n.Close(),
+                confirmAction: n => n.Close(), // do something usefull here
                 declineAction: n => n.Close());
         }
+
+        private void MahApps_Click(object sender, RoutedEventArgs e)
+        {
+            _notifier.ShowMahAppsNotification("MahApps notification", "This is custom notification with MahApps styles");
+        }
+
     }
 }
