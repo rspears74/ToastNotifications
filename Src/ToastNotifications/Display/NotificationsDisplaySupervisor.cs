@@ -31,6 +31,7 @@ namespace ToastNotifications.Display
             _lifetimeSupervisor.CloseNotificationRequested += LifetimeSupervisorOnCloseNotificationRequested;
 
             _positionProvider.UpdatePositionRequested += PositionProviderOnUpdatePositionRequested;
+            _positionProvider.UpdateEjectDirectionRequested += PositionProviderOnUpdateEjectDirectionRequested;
         }
 
         public void DisplayNotification(INotification notification)
@@ -122,6 +123,12 @@ namespace ToastNotifications.Display
             UpdateWindowPosition();
         }
 
+
+        private void PositionProviderOnUpdateEjectDirectionRequested(object sender, EventArgs eventArgs)
+        {
+            UpdateEjectDirection();
+        }
+
         public void Dispose()
         {
             _window?.Close();
@@ -131,6 +138,7 @@ namespace ToastNotifications.Display
             _lifetimeSupervisor.CloseNotificationRequested -= LifetimeSupervisorOnCloseNotificationRequested;
 
             _positionProvider.UpdatePositionRequested -= PositionProviderOnUpdatePositionRequested;
+            _positionProvider.UpdateEjectDirectionRequested -= PositionProviderOnUpdateEjectDirectionRequested;
 
             _lifetimeSupervisor = null;
         }
