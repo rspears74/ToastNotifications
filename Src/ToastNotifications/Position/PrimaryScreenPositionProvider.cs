@@ -92,5 +92,9 @@ namespace ToastNotifications.Position
 
         // not used in this provider
         public event EventHandler UpdatePositionRequested;
+
+        public event EventHandler UpdateEjectDirectionRequested;
+
+        public event EventHandler UpdateHeightRequested;
     }
 }
