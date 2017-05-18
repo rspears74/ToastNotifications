@@ -94,5 +94,7 @@ namespace ToastNotifications.Position
         public event EventHandler UpdatePositionRequested;
 
         public event EventHandler UpdateEjectDirectionRequested;
+
+        public event EventHandler UpdateHeightRequested;
     }
 }

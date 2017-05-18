@@ -9,7 +9,9 @@ namespace ToastNotifications.Core
         Point GetPosition(double actualPopupWidth, double actualPopupHeight);
         double GetHeight();
         EjectDirection EjectDirection { get; }
+
         event EventHandler UpdatePositionRequested;
         event EventHandler UpdateEjectDirectionRequested;
+        event EventHandler UpdateHeightRequested;
     }
 }

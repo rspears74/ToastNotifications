@@ -32,6 +32,7 @@ namespace ToastNotifications.Display
 
             _positionProvider.UpdatePositionRequested += PositionProviderOnUpdatePositionRequested;
             _positionProvider.UpdateEjectDirectionRequested += PositionProviderOnUpdateEjectDirectionRequested;
+            _positionProvider.UpdateHeightRequested += PositionProviderOnUpdateHeightRequested;
         }
 
         public void DisplayNotification(INotification notification)
@@ -91,6 +92,13 @@ namespace ToastNotifications.Display
             _window.SetEjectDirection(_positionProvider.EjectDirection);
         }
 
+        private void UpdateHeight()
+        {
+            var height = _positionProvider.GetHeight();
+            _window.MinHeight = height;
+            _window.Height = height;
+        }
+
         private void ShowNotification(INotification notification)
         {
             notification.Bind(Close);
@@ -123,10 +131,14 @@ namespace ToastNotifications.Display
             UpdateWindowPosition();
         }
 
-
         private void PositionProviderOnUpdateEjectDirectionRequested(object sender, EventArgs eventArgs)
         {
             UpdateEjectDirection();
+        }
+
+        private void PositionProviderOnUpdateHeightRequested(object sender, EventArgs eventArgs)
+        {
+            UpdateHeight();
         }
 
         public void Dispose()
@@ -139,6 +151,7 @@ namespace ToastNotifications.Display
 
             _positionProvider.UpdatePositionRequested -= PositionProviderOnUpdatePositionRequested;
             _positionProvider.UpdateEjectDirectionRequested -= PositionProviderOnUpdateEjectDirectionRequested;
+            _positionProvider.UpdateHeightRequested -= PositionProviderOnUpdateHeightRequested;
 
             _lifetimeSupervisor = null;
         }
