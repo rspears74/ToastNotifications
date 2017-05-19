@@ -59,7 +59,7 @@ namespace ConfigurationExample
             {
                 case PositionProviderType.Window:
                     {
-                        return new WindowPositionProvider(Application.Current.MainWindow, corner, 10, 40);
+                        return new WindowPositionProvider(Application.Current.MainWindow, corner, 25, 10);
                     }
                 case PositionProviderType.Screen:
                     {

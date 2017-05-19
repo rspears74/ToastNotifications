@@ -22,22 +22,26 @@ namespace ToastNotifications.Position
 
             parentWindow.SizeChanged += ParentWindowOnSizeChanged;
             parentWindow.LocationChanged += ParentWindowOnLocationChanged;
+            parentWindow.StateChanged += ParentWindowOnStateChanged;
+            parentWindow.Activated += ParentWindowOnActivated;
 
             SetEjectDirection(corner);
         }
 
         public Point GetPosition(double actualPopupWidth, double actualPopupHeight)
         {
+            var parentPosition = ParentWindow.GetActualPosition();
+
             switch (_corner)
             {
                 case Corner.TopRight:
-                    return GetPositionForTopRightCorner(actualPopupWidth, actualPopupHeight);
+                    return GetPositionForTopRightCorner(parentPosition, actualPopupWidth, actualPopupHeight);
                 case Corner.TopLeft:
-                    return GetPositionForTopLeftCorner(actualPopupWidth, actualPopupHeight);
+                    return GetPositionForTopLeftCorner(parentPosition, actualPopupWidth, actualPopupHeight);
                 case Corner.BottomRight:
-                    return GetPositionForBottomRightCorner(actualPopupWidth, actualPopupHeight);
+                    return GetPositionForBottomRightCorner(parentPosition, actualPopupWidth, actualPopupHeight);
                 case Corner.BottomLeft:
-                    return GetPositionForBottomLeftCorner(actualPopupWidth, actualPopupHeight);
+                    return GetPositionForBottomLeftCorner(parentPosition, actualPopupWidth, actualPopupHeight);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -65,34 +69,38 @@ namespace ToastNotifications.Position
             }
         }
 
-        private Point GetPositionForBottomLeftCorner(double actualPopupWidth, double actualPopupHeight)
+        private Point GetPositionForBottomLeftCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(ParentWindow.Left + _offsetX, ParentWindow.Top + ParentWindow.ActualHeight - _offsetY - actualPopupHeight);
+            return new Point(parentPosition.X + _offsetX, parentPosition.Y + ParentWindow.ActualHeight - _offsetY - actualPopupHeight);
         }
 
-        private Point GetPositionForBottomRightCorner(double actualPopupWidth, double actualPopupHeight)
+        private Point GetPositionForBottomRightCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(ParentWindow.Left + ParentWindow.ActualWidth - _offsetX - actualPopupWidth, ParentWindow.Top + ParentWindow.ActualHeight - _offsetY - actualPopupHeight);
+            return new Point(parentPosition.X + ParentWindow.ActualWidth - _offsetX - actualPopupWidth, parentPosition.Y + ParentWindow.ActualHeight - _offsetY - actualPopupHeight);
         }
 
-        private Point GetPositionForTopLeftCorner(double actualPopupWidth, double actualPopupHeight)
+        private Point GetPositionForTopLeftCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(ParentWindow.Left + _offsetX, ParentWindow.Top + _offsetY);
+            return new Point(parentPosition.X + _offsetX, parentPosition.Y + _offsetY);
         }
 
-        private Point GetPositionForTopRightCorner(double actualPopupWidth, double actualPopupHeight)
+        private Point GetPositionForTopRightCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point( ParentWindow.Left + ParentWindow.ActualWidth - _offsetX - actualPopupWidth,  ParentWindow.Top + _offsetY);
+            return new Point( parentPosition.X + ParentWindow.ActualWidth - _offsetX - actualPopupWidth,  parentPosition.Y + _offsetY);
         }
 
         public void Dispose()
         {
             ParentWindow.LocationChanged -= ParentWindowOnLocationChanged;
             ParentWindow.SizeChanged -= ParentWindowOnSizeChanged;
+            ParentWindow.StateChanged -= ParentWindowOnStateChanged;
+            ParentWindow.Activated -= ParentWindowOnActivated;
         }
 
         protected virtual void RequestUpdatePosition()
         {
+            UpdateHeightRequested?.Invoke(this, EventArgs.Empty);
+            UpdateEjectDirectionRequested?.Invoke(this, EventArgs.Empty);
             UpdatePositionRequested?.Invoke(this, EventArgs.Empty);
         }
 
@@ -102,6 +110,16 @@ namespace ToastNotifications.Position
         }
 
         private void ParentWindowOnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            RequestUpdatePosition();
+        }
+
+        private void ParentWindowOnStateChanged(object sender, EventArgs eventArgs)
+        {
+            RequestUpdatePosition();
+        }
+
+        private void ParentWindowOnActivated(object sender, EventArgs eventArgs)
         {
             RequestUpdatePosition();
         }

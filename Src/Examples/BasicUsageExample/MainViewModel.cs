@@ -19,8 +19,8 @@ namespace BasicUsageExample
                 cfg.PositionProvider = new WindowPositionProvider(
                     parentWindow: Application.Current.MainWindow, 
                     corner: Corner.TopRight, 
-                    offsetX: 10,  
-                    offsetY: 25);
+                    offsetX: 25,  
+                    offsetY: 10);
 
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                     notificationLifetime: TimeSpan.FromSeconds(3), 
