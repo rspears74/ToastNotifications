@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -14,6 +16,16 @@ namespace ToastNotifications.Display
         {
             get { return (bool)GetValue(ShouldReverseItemsProperty); }
             set { SetValue(ShouldReverseItemsProperty, value); }
+        }
+
+        public NotificationsItemsControl()
+        {
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            PrepareItemsControl(this, ShouldReverseItems);
         }
 
         private static void ShouldReverseItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
