@@ -52,11 +52,11 @@ namespace BasicUsageExample
             MessageOptions opts = new MessageOptions
             {
                 CloseClickAction = closeAction,
-                Tag = "[This is Tag Value]",
+                Tag = $"[This is Tag Value ({++_count})]",
                 FreezeOnMouseEnter = cbFreezeOnMouseEnter.IsChecked.GetValueOrDefault(),
                 ShowCloseButton = cbShowCloseButton.IsChecked.GetValueOrDefault()
             };
-            lastMessage = $"{_count++} {name}";
+            lastMessage = $"{_count} {name}";
             action(lastMessage, opts);
             bClearLast.IsEnabled = true;
         }
@@ -64,7 +64,7 @@ namespace BasicUsageExample
         private void closeAction(NotificationBase obj)
         {
             var opts = obj.DisplayPart.GetOptions();
-            MessageBox.Show($"Notification close clicked {opts.Tag.ToString()}");
+            _vm.ShowInformation($"Notification close clicked, Tag: {opts.Tag.ToString()}");
         }
 
 
