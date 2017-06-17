@@ -102,13 +102,16 @@ namespace ToastNotifications.Display
         private void ShowNotification(INotification notification)
         {
             notification.Bind(Close);
-            _window.ShowNotification(notification.DisplayPart);
+            _window?.ShowNotification(notification.DisplayPart);
         }
 
         private void CloseNotification(INotification notification)
         {
-            notification.DisplayPart.OnClose();
-            DelayAction.Execute(TimeSpan.FromMilliseconds(300), () => _window.CloseNotification(notification.DisplayPart));
+            if (notification != null)
+            {
+                notification.DisplayPart.OnClose();
+                DelayAction.Execute(TimeSpan.FromMilliseconds(300), () => _window?.CloseNotification(notification.DisplayPart));
+            }
         }
 
         private void ShowWindow()

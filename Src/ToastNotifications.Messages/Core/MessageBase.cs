@@ -7,14 +7,17 @@ namespace ToastNotifications.Messages.Core
     public abstract class MessageBase<TDisplayPart> : NotificationBase where TDisplayPart : NotificationDisplayPart
     {
         protected NotificationDisplayPart _displayPart;
-        private readonly MessageOptions _options;
+        internal readonly MessageOptions Options;
 
         public string Message { get; }
 
         public MessageBase(string message, MessageOptions options)
         {
             Message = message;
-            _options = options;
+            if (options == null)
+                Options = new MessageOptions();
+            else
+                Options = options;
         }
 
         public override NotificationDisplayPart DisplayPart => _displayPart ?? (_displayPart = Configure());
@@ -26,7 +29,7 @@ namespace ToastNotifications.Messages.Core
             displayPart.Unloaded += OnUnloaded;
             displayPart.MouseLeftButtonDown += OnLeftMouseDown;
 
-            UpdateDisplayOptions(displayPart, _options);
+            UpdateDisplayOptions(displayPart, Options);
             return displayPart;
         }
 
@@ -38,7 +41,7 @@ namespace ToastNotifications.Messages.Core
 
         private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
         {
-            _options.NotificationClickAction?.Invoke(this);
+            Options.NotificationClickAction?.Invoke(this);
         }
 
         protected abstract void UpdateDisplayOptions(TDisplayPart displayPart, MessageOptions options);

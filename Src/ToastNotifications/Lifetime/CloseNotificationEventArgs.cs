@@ -1,8 +1,9 @@
-﻿using ToastNotifications.Core;
+﻿using System;
+using ToastNotifications.Core;
 
 namespace ToastNotifications.Lifetime
 {
-    public class CloseNotificationEventArgs
+    public class CloseNotificationEventArgs : EventArgs
     {
         public INotification Notification { get; }
 

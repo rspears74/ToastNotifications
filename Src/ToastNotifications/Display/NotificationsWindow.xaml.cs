@@ -41,7 +41,7 @@ namespace ToastNotifications.Display
 
         private void RecomputeLayout()
         {
-            Dispatcher.Invoke(() => { ; }, DispatcherPriority.Render);
+            Dispatcher.Invoke(((Action)(() => {; })), DispatcherPriority.Render);
         }
 
         public void SetEjectDirection(EjectDirection ejectDirection)

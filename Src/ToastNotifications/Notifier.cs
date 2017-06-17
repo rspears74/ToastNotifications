@@ -57,6 +57,10 @@ namespace ToastNotifications
             }
         }
 
+        public void ClearMessages(string msg)
+        {
+            this._lifetimeSupervisor?.ClearMessages(msg);
+        }
 
         private bool _disposed = false;
 
