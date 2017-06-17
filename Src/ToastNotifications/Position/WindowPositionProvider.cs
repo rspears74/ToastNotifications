@@ -49,7 +49,16 @@ namespace ToastNotifications.Position
 
         public double GetHeight()
         {
-            return ParentWindow.ActualHeight;
+            var actualHeight = (ParentWindow.Content as FrameworkElement)?.ActualHeight ?? ParentWindow.ActualHeight;
+
+            return actualHeight;
+        }
+
+        private double GetWindowHeight()
+        {
+            var actualWidth = (ParentWindow.Content as FrameworkElement)?.ActualWidth ?? ParentWindow.ActualWidth;
+
+            return actualWidth;
         }
 
         private void SetEjectDirection(Corner corner)
@@ -71,12 +80,12 @@ namespace ToastNotifications.Position
 
         private Point GetPositionForBottomLeftCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(parentPosition.X + _offsetX, parentPosition.Y + ParentWindow.ActualHeight - _offsetY - actualPopupHeight);
+            return new Point(parentPosition.X + _offsetX, parentPosition.Y - _offsetY);
         }
 
         private Point GetPositionForBottomRightCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(parentPosition.X + ParentWindow.ActualWidth - _offsetX - actualPopupWidth, parentPosition.Y + ParentWindow.ActualHeight - _offsetY - actualPopupHeight);
+            return new Point(parentPosition.X + GetWindowHeight() - _offsetX - actualPopupWidth, parentPosition.Y - _offsetY);
         }
 
         private Point GetPositionForTopLeftCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
@@ -86,7 +95,7 @@ namespace ToastNotifications.Position
 
         private Point GetPositionForTopRightCorner(Point parentPosition, double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point( parentPosition.X + ParentWindow.ActualWidth - _offsetX - actualPopupWidth,  parentPosition.Y + _offsetY);
+            return new Point( parentPosition.X + GetWindowHeight() - _offsetX - actualPopupWidth,  parentPosition.Y + _offsetY);
         }
 
         public void Dispose()
