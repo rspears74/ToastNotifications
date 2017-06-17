@@ -19,7 +19,7 @@
             </Rectangle>
 
             <TextBlock x:Name="Text" Text="{Binding Message, Mode=OneTime}" Style="{StaticResource NotificationText}" Grid.Column="1"  />
-            <Button x:Name="CloseButton" Style="{StaticResource NotificationCloseButton}"  Padding="1" Grid.Column="2" Click="OnClose">
+            <Button x:Name="CloseButton" Style="{StaticResource NotificationCloseButton}"  Padding="1" Grid.Column="2" Click="OnClose" Visibility="Hidden">
                 <Rectangle Style="{StaticResource CloseButtonIcon}" Margin="2">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource CloseIcon}" />

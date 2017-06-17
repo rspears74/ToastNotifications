@@ -1,4 +1,5 @@
-﻿using ToastNotifications.Messages.Core;
+﻿using ToastNotifications.Core;
+using ToastNotifications.Messages.Core;
 using ToastNotifications.Messages.Error;
 
 namespace ToastNotifications.Messages

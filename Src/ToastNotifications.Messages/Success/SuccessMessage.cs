@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ToastNotifications.Core;
 using ToastNotifications.Messages.Core;
 
 namespace ToastNotifications.Messages.Success

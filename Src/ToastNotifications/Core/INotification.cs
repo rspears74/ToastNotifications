@@ -11,5 +11,9 @@ namespace ToastNotifications.Core
         void Bind(Action<INotification> closeAction);
 
         void Close();
+
+        string GetMessage();
+
+        bool CanClose { get; set; }
     }
 }

@@ -61,6 +61,11 @@ namespace ToastNotifications.Lifetime
         {
         }
 
+
+        public void ClearMessages(string msg)
+        {
+        }
+
         public event EventHandler<ShowNotificationEventArgs> ShowNotificationRequested;
         public event EventHandler<CloseNotificationEventArgs> CloseNotificationRequested;
     }
