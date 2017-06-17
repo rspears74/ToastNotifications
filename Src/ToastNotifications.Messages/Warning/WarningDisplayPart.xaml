@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="250" >
 
     <Border x:Name="ContentWrapper" Style="{DynamicResource NotificationBorder}" Background="{DynamicResource WarningColorBrush}">
-        <Grid x:Name="Content">
+        <Grid x:Name="ContentContainer">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="*" />

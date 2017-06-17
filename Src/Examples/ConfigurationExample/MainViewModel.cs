@@ -100,7 +100,7 @@ namespace ConfigurationExample
 
         public void ShowCustomizedMessage(string message)
         {
-            var options = new ToastNotifications.Messages.Core.MessageOptions
+            var options = new MessageOptions
             {
                 FontSize = 25,
                 ShowCloseButton = false,

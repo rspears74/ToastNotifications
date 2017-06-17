@@ -1,5 +1,4 @@
 ﻿using System;
-using ToastNotifications.Core;
 
 namespace ToastNotifications.Core
 {
@@ -8,6 +7,7 @@ namespace ToastNotifications.Core
         public double? FontSize { get; set; }
 
         public bool? ShowCloseButton { get; set; }
+
         public Action<NotificationBase> NotificationClickAction { get; set; }
 
         public Action<NotificationBase> CloseClickAction { get; set; }
@@ -15,7 +15,5 @@ namespace ToastNotifications.Core
         public object Tag { get; set; }
 
         public bool FreezeOnMouseEnter { get; set; } = true;
-
-
     }
 }
