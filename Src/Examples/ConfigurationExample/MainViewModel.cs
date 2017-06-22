@@ -104,6 +104,7 @@ namespace ConfigurationExample
             {
                 FontSize = 25,
                 ShowCloseButton = false,
+                FreezeOnMouseEnter = false,
                 NotificationClickAction = n =>
                 {
                     n.Close();
@@ -111,6 +112,7 @@ namespace ConfigurationExample
                 }
             };
 
+            
             _notifier.ShowError(message, options);
         }
         #endregion

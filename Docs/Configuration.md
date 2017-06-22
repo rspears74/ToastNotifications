@@ -112,6 +112,19 @@ Notifier notifier = new Notifier(cfg =>
 });
 ```
 
+### Notifier clear messages
+There is an option to remove notifications by theirs messages
+```csharp
+Notifier notifier = new Notifier(cfg =>
+{
+    /* * */
+});
+
+notifier.ClearMessages(); // removes all notifications
+notifier.ClearMessages("Foo"); // removes all notifications with text "Foo"
+```
+
+
 ### Message options
 ```csharp
 
@@ -120,11 +133,18 @@ using ToastNotifications.Messages.Core;
 var options =  new MessageOptions{
     FontSize = 30, // set notification font size
     ShowCloseButton = false // set the option to show or hide notification close button
+    Tag = "Any object or value which might matter in callbacks",
+    FreezeOnMouseEnter = true, // set the option to prevent notification dissapear automatically if user move cursor on it
+    ShowCloseButton = true, // set the option to show or hide close button on notifications
     NotificationClickAction = n => // set the callback for notification click event
     {
         n.Close(); // call Close method to remove notification
         notifier.ShowSuccess("clicked!");
-    }
+    },
+    CloseClickAction = n => {
+        var opts = obj.DisplayPart.GetOptions();
+        _vm.ShowInformation($"Notification close clicked, Tag: {opts.Tag}");
+    },
 };
 /* * */
 notifier.ShowError(message, options);
