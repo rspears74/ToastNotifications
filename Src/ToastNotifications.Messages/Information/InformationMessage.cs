@@ -24,8 +24,7 @@ namespace ToastNotifications.Messages.Information
             if (options.FontSize != null)
                 displayPart.Text.FontSize = options.FontSize.Value;
 
-            if (options.ShowCloseButton != null)
-                displayPart.CloseButton.Visibility = options.ShowCloseButton.Value ? Visibility.Visible : Visibility.Collapsed;
+            displayPart.CloseButton.Visibility = options.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

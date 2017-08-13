@@ -59,7 +59,7 @@ namespace ConfigurationExample
             {
                 case PositionProviderType.Window:
                     {
-                        return new WindowPositionProvider(Application.Current.MainWindow, corner, 25, 10);
+                        return new WindowPositionProvider(Application.Current.MainWindow, corner, 5, 5);
                     }
                 case PositionProviderType.Screen:
                     {
@@ -100,10 +100,11 @@ namespace ConfigurationExample
 
         public void ShowCustomizedMessage(string message)
         {
-            var options = new ToastNotifications.Messages.Core.MessageOptions
+            var options = new MessageOptions
             {
                 FontSize = 25,
                 ShowCloseButton = false,
+                FreezeOnMouseEnter = false,
                 NotificationClickAction = n =>
                 {
                     n.Close();
@@ -111,6 +112,7 @@ namespace ConfigurationExample
                 }
             };
 
+            
             _notifier.ShowError(message, options);
         }
         #endregion

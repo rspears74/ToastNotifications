@@ -110,6 +110,7 @@ notifier.Dispose();
   ToastNotifications v2 assembies are signed. Read this doc for more details.
 
 ## Contributors
+B. Micka (https://github.com/b-mi)
 
 Uwy (https://github.com/Uwy)
 

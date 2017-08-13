@@ -32,6 +32,8 @@ namespace BasicUsageExample
                 cfg.DisplayOptions.TopMost = true;
                 cfg.DisplayOptions.Width = 250;
             });
+
+            _notifier.ClearMessages();
         }
 
         public void OnUnloaded()

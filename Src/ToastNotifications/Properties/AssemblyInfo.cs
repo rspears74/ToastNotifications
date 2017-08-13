@@ -10,10 +10,10 @@ using System.Windows;
 [assembly: AssemblyTitle("ToastNotifications")]
 [assembly: AssemblyDescription("Toast notifications for WPF")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DevCrew.pl Rafa³ £opatka")]
+[assembly: AssemblyCompany("DevCrew.pl Rafaï¿½ ï¿½opatka")]
 [assembly: AssemblyProduct("ToastNotifications")]
-[assembly: AssemblyCopyright("Copyright © Rafa³ £opatka  2017")]
-[assembly: AssemblyTrademark("Rafa³ £opatka")]
+[assembly: AssemblyCopyright("Copyright ï¿½ Rafaï¿½ ï¿½opatka  2017")]
+[assembly: AssemblyTrademark("Rafaï¿½ ï¿½opatka")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.3.0")]
-[assembly: AssemblyFileVersion("2.1.3.0")]
+[assembly: AssemblyVersion("2.2.0.0")]
+[assembly: AssemblyFileVersion("2.2.0.0")]
