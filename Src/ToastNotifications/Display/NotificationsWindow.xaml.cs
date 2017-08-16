@@ -13,6 +13,9 @@ namespace ToastNotifications.Display
         public NotificationsWindow()
         {
             InitializeComponent();
+
+            ShowInTaskbar = false;
+            Visibility = Visibility.Hidden;
         }
 
         public NotificationsWindow(Window owner)
