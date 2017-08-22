@@ -53,6 +53,7 @@ namespace BasicUsageExample
                 CloseClickAction = CloseAction,
                 Tag = $"[This is Tag Value ({++_count})]",
                 FreezeOnMouseEnter = cbFreezeOnMouseEnter.IsChecked.GetValueOrDefault(),
+                UnfreezeOnMouseLeave = cbUnfreezeOnMouseLeave.IsChecked.GetValueOrDefault(),
                 ShowCloseButton = cbShowCloseButton.IsChecked.GetValueOrDefault()
             };
             _lastMessage = $"{_count} {name}";
