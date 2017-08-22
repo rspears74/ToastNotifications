@@ -80,22 +80,27 @@ namespace ConfigurationExample
         #region notifier messages
         internal void ShowWarning(string message)
         {
-            _notifier.ShowWarning(message);
+            _notifier.ShowWarning(message, createOptions());
+        }
+
+        private MessageOptions createOptions()
+        {
+            return new MessageOptions() { FreezeOnMouseEnter = this.FreezeOnMouseEnter.GetValueOrDefault(), ShowCloseButton = this.ShowCloseButton.GetValueOrDefault()};
         }
 
         internal void ShowSuccess(string message)
         {
-            _notifier.ShowSuccess(message);
+            _notifier.ShowSuccess(message, createOptions());
         }
 
         public void ShowInformation(string message)
         {
-            _notifier.ShowInformation(message);
+            _notifier.ShowInformation(message, createOptions());
         }
 
         public void ShowError(string message)
         {
-            _notifier.ShowError(message);
+            _notifier.ShowError(message, createOptions());
         }
 
         public void ShowCustomizedMessage(string message)
@@ -158,13 +163,16 @@ namespace ConfigurationExample
             }
         }
 
+        public bool? FreezeOnMouseEnter { get; set; } = true;
+        public bool? ShowCloseButton { get; set; } = false;
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null)
-                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

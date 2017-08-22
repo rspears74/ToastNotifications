@@ -33,7 +33,7 @@ namespace ToastNotifications.Core
         {
             var dc = DataContext as INotification;
             var opts = dc.DisplayPart.GetOptions();
-            if (opts.FreezeOnMouseEnter)
+            if (opts != null &&  opts.FreezeOnMouseEnter)
             {
                 var bord2 = this.Content as Border;
                 if (bord2 != null)
