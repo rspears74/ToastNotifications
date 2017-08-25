@@ -29,7 +29,7 @@ namespace BasicUsageExample
 
                 cfg.Dispatcher = Application.Current.Dispatcher;
 
-                cfg.DisplayOptions.TopMost = true;
+                cfg.DisplayOptions.TopMost = false;
                 cfg.DisplayOptions.Width = 250;
             });
 

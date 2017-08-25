@@ -32,22 +32,41 @@ namespace ToastNotifications.Core
         protected override void OnMouseEnter(MouseEventArgs e)
         {
             var dc = DataContext as INotification;
-            var opts = dc.DisplayPart.GetOptions();
-            if (opts.FreezeOnMouseEnter)
+            var opts = dc?.DisplayPart?.GetOptions();
+            if (opts != null && opts.FreezeOnMouseEnter)
             {
-                var bord2 = this.Content as Border;
-                if (bord2 != null)
+                if (!opts.UnfreezeOnMouseLeave) // message stay freezed, show close button
                 {
-                    if (dc.CanClose)
+                    var bord2 = this.Content as Border;
+                    if (bord2 != null)
                     {
-                        dc.CanClose = false;
-                        var btn = FindChild<Button>(this, "CloseButton");
-                        btn.Visibility = Visibility.Visible;
+                        if (dc.CanClose)
+                        {
+                            dc.CanClose = false;
+                            var btn = FindChild<Button>(this, "CloseButton");
+                            btn.Visibility = Visibility.Visible;
+                        }
                     }
+                }
+                else
+                {
+                    dc.CanClose = false;
                 }
             }
             base.OnMouseEnter(e);
         }
+
+        protected override void OnMouseLeave(MouseEventArgs e)
+        {
+            var dc = DataContext as INotification;
+            var opts = dc?.DisplayPart?.GetOptions();
+            if (opts != null && opts.FreezeOnMouseEnter && opts.UnfreezeOnMouseLeave)
+            {
+                dc.CanClose = true;
+            }
+            base.OnMouseLeave(e);
+        }
+
 
         virtual public string GetMessage()
         {
