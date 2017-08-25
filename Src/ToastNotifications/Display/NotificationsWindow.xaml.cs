@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Interop;
 using System.Windows.Threading;
 using ToastNotifications.Core;
+using ToastNotifications.Utilities;
 
 namespace ToastNotifications.Display
 {
@@ -14,6 +16,9 @@ namespace ToastNotifications.Display
         {
             InitializeComponent();
 
+            Loaded += NotificationsWindow_Loaded;
+            Closing += NotificationsWindow_Closing;
+
             ShowInTaskbar = false;
             Visibility = Visibility.Hidden;
         }
@@ -21,6 +26,10 @@ namespace ToastNotifications.Display
         public NotificationsWindow(Window owner)
         {
             InitializeComponent();
+
+            Loaded += NotificationsWindow_Loaded;
+            Closing += NotificationsWindow_Closing;
+
             Owner = owner;
         }
 
@@ -66,6 +75,21 @@ namespace ToastNotifications.Display
         {
             Topmost = displayOptions.TopMost;
             NotificationsList.Width = displayOptions.Width;
+        }
+
+        private void NotificationsWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindowInteropHelper wndHelper = new WindowInteropHelper(this);
+
+            int exStyle = (int)WinApi.GetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GWL_EXSTYLE);
+
+            exStyle |= (int)WinApi.ExtendedWindowStyles.WS_EX_TOOLWINDOW;
+            WinApi.SetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
+        }
+
+        private void NotificationsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }
