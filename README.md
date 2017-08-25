@@ -114,6 +114,8 @@ B. Micka (https://github.com/b-mi)
 
 Krzysztof Zmorzyński (https://github.com/ZmorzynskiK)
 
+Kostiantyn (https://github.com/dualbios)
+
 Uwy (https://github.com/Uwy)
 
 Andy Li (https://github.com/oneandy)
