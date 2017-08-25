@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
 using ToastNotifications.Core;
@@ -90,6 +91,12 @@ namespace ToastNotifications.Display
         private void NotificationsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
+        }
+
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
