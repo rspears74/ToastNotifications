@@ -98,5 +98,11 @@ namespace ToastNotifications.Display
         {
             e.Handled = true;
         }
+
+        public new void Close()
+        {
+            this.Closing -= NotificationsWindow_Closing;
+            base.Close();
+        }
     }
 }
