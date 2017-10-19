@@ -123,3 +123,10 @@ Andy Li (https://github.com/oneandy)
 BrainCrumbz (https://github.com/BrainCrumbz)
 
 wdcossey (https://github.com/wdcossey)
+
+## Creating new issues
+Before you create new issue, please check the documentation, because many features and options are already there.
+(https://github.com/raflop/ToastNotifications/tree/master-v2/Docs)
+
+If there is still a problem, please create new issue/question filling following informations. 
+If it's possible, please provide a sample code to reproduce issue.
