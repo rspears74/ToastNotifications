@@ -32,7 +32,7 @@ namespace ToastNotifications.Position
         {
             var parentPosition = ParentWindow.GetActualPosition();
 
-            switch (_corner)
+			switch(_corner)
             {
                 case Corner.TopRight:
                     return GetPositionForTopRightCorner(parentPosition, actualPopupWidth, actualPopupHeight);
