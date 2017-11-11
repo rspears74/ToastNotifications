@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Threading;
 using ToastNotifications.Core;
@@ -25,12 +26,17 @@ namespace ToastNotifications.Lifetime
             _notificationLifetime = notificationLifetime;
             _maximumNotificationCount = maximumNotificationCount.Count;
 
-            _notifications = new NotificationsList();
             _interval = new Interval();
         }
 
         public void PushNotification(INotification notification)
         {
+            if (_disposed)
+            {
+                Debug.WriteLine($"Warn ToastNotifications {this}.{nameof(PushNotification)} is already disposed");
+                return;
+            }
+
             if (_interval.IsRunning == false)
                 TimerStart();
 
@@ -61,8 +67,7 @@ namespace ToastNotifications.Lifetime
 
         public void CloseNotification(INotification notification)
         {
-            NotificationMetaData removedNotification;
-            _notifications.TryRemove(notification.Id, out removedNotification);
+            _notifications.TryRemove(notification.Id, out var removedNotification);
             RequestCloseNotification(new CloseNotificationEventArgs(removedNotification.Notification));
 
             if (_notificationsPending != null && _notificationsPending.Any())
@@ -72,13 +77,21 @@ namespace ToastNotifications.Lifetime
             }
         }
 
+
+        private bool _disposed = false;
         public void Dispose()
         {
+            if (_disposed)
+                return;
+
+            _disposed = true;
             _interval.Stop();
             _interval = null;
             _notifications?.Clear();
             _notifications = null;
         }
+
+
 
         public void UseDispatcher(Dispatcher dispatcher)
         {
@@ -123,7 +136,6 @@ namespace ToastNotifications.Lifetime
 
         public void ClearMessages(string msg)
         {
-
             if (string.IsNullOrWhiteSpace(msg))
             {
                 var notificationsToRemove = _notifications
