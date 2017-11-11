@@ -89,6 +89,7 @@ namespace ToastNotifications.Lifetime
             _interval = null;
             _notifications?.Clear();
             _notifications = null;
+            _notificationsPending.Clear();
         }
 
 
