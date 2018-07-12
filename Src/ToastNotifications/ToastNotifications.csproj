@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Core\DisplayOptions.cs" />
     <Compile Include="Core\MessageOptions.cs" />
+    <Compile Include="Core\WindowsTaskBarLocation.cs" />
     <Compile Include="Notifier.cs" />
     <Compile Include="Position\PositionExtensions.cs" />
     <Compile Include="Utilities\DateTimeNow.cs" />
