@@ -13,14 +13,21 @@ namespace ToastNotifications.Position
         private double ScreenHeight => SystemParameters.PrimaryScreenHeight;
         private double ScreenWidth => SystemParameters.PrimaryScreenWidth;
 
+        private double WorkAreaHeight => SystemParameters.WorkArea.Height;
+        private double WorkAreaWidth => SystemParameters.WorkArea.Width;
+
         public Window ParentWindow { get; }
         public EjectDirection EjectDirection { get; private set; }
-        
-        public PrimaryScreenPositionProvider(Corner corner, double offsetX, double offsetY)
+
+        public PrimaryScreenPositionProvider(
+            Corner corner,
+            double offsetX,
+            double offsetY)
         {
             _corner = corner;
             _offsetX = offsetX;
             _offsetY = offsetY;
+
             ParentWindow = null;
 
             SetEjectDirection(corner);
@@ -49,7 +56,7 @@ namespace ToastNotifications.Position
         {
             return ScreenHeight;
         }
-        
+
         private void SetEjectDirection(Corner corner)
         {
             switch (corner)
@@ -70,29 +77,116 @@ namespace ToastNotifications.Position
 
         private Point GetPositionForBottomLeftCorner(double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(_offsetX, ScreenHeight - _offsetY - actualPopupHeight);
+            double pointX = _offsetX;
+            double pointY = WorkAreaHeight - _offsetY - actualPopupHeight;
+
+            switch (GetTaskBarLocation())
+            {
+                case WindowsTaskBarLocation.Left:
+                    pointX = (ScreenWidth - WorkAreaWidth) + _offsetX;
+                    break;
+
+                case WindowsTaskBarLocation.Top:
+                    pointY = ScreenHeight - _offsetY - actualPopupHeight;
+                    break;
+            }
+
+            return new Point(pointX, pointY);
         }
 
         private Point GetPositionForBottomCenterCorner(double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point((ScreenWidth - _offsetX - actualPopupWidth) / 2, ScreenHeight - _offsetY - actualPopupHeight);
+            double pointX = (WorkAreaWidth - _offsetX - actualPopupWidth) / 2;
+            double pointY = WorkAreaHeight - _offsetY - actualPopupHeight;
+
+            switch (GetTaskBarLocation())
+            {
+                case WindowsTaskBarLocation.Left:
+                    pointX = (ScreenWidth - _offsetX - actualPopupWidth) / 2;
+                    break;
+
+                case WindowsTaskBarLocation.Top:
+                    pointY = ScreenHeight - _offsetY - actualPopupHeight;
+                    break;
+            }
+
+            return new Point(pointX, pointY);
         }
 
 
         private Point GetPositionForBottomRightCorner(double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(ScreenWidth - _offsetX - actualPopupWidth, ScreenHeight - _offsetY - actualPopupHeight);
+            double pointX = WorkAreaWidth - _offsetX - actualPopupWidth;
+            double pointY = WorkAreaHeight - _offsetY - actualPopupHeight;
+
+            switch (GetTaskBarLocation())
+            {
+                case WindowsTaskBarLocation.Left:
+                    pointX = ScreenWidth - _offsetX - actualPopupWidth;
+                    break;
+
+                case WindowsTaskBarLocation.Top:
+                    pointY = ScreenHeight - _offsetY - actualPopupHeight;
+                    break;
+            }
+
+            return new Point(pointX, pointY);
         }
 
         private Point GetPositionForTopLeftCorner(double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(_offsetX, _offsetY);
+            double pointX = _offsetX;
+            double pointY = _offsetY;
+
+            switch (GetTaskBarLocation())
+            {
+                case WindowsTaskBarLocation.Left:
+                    pointX = ScreenWidth - WorkAreaWidth + _offsetX;
+                    break;
+
+                case WindowsTaskBarLocation.Top:
+                    pointY = ScreenHeight - WorkAreaHeight + _offsetY;
+                    break;
+            }
+
+            return new Point(pointX, pointY);
         }
 
         private Point GetPositionForTopRightCorner(double actualPopupWidth, double actualPopupHeight)
         {
-            return new Point(ScreenWidth - _offsetX - actualPopupWidth, _offsetY);
+            double pointX = WorkAreaWidth - _offsetX - actualPopupWidth;
+            double pointY = _offsetY;
+
+            switch (GetTaskBarLocation())
+            {
+                case WindowsTaskBarLocation.Left:
+                    pointX = ScreenWidth - actualPopupWidth - _offsetX;
+                    break;
+
+                case WindowsTaskBarLocation.Top:
+                    pointY = ScreenHeight - WorkAreaHeight + _offsetY;
+                    break;
+            }
+
+            return new Point(pointX, pointY);
         }
+
+
+        private WindowsTaskBarLocation GetTaskBarLocation()
+        {
+            if (SystemParameters.WorkArea.Left > 0)
+                return WindowsTaskBarLocation.Left;
+
+            if (SystemParameters.WorkArea.Top > 0)
+                return WindowsTaskBarLocation.Top;
+
+            if (SystemParameters.WorkArea.Left == 0 &&
+                SystemParameters.WorkArea.Width < SystemParameters.PrimaryScreenWidth)
+                return WindowsTaskBarLocation.Right;
+
+            return WindowsTaskBarLocation.Bottom;
+        }
+
 
         public void Dispose()
         {
@@ -100,11 +194,11 @@ namespace ToastNotifications.Position
         }
 
 #pragma warning disable CS0067
-		public event EventHandler UpdatePositionRequested;
+        public event EventHandler UpdatePositionRequested;
 
         public event EventHandler UpdateEjectDirectionRequested;
 
         public event EventHandler UpdateHeightRequested;
 #pragma warning restore CS0067
-	}
+    }
 }
