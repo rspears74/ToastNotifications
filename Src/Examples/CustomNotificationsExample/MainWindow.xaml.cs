@@ -28,7 +28,10 @@ namespace CustomNotificationsExample
             {
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(15), MaximumNotificationCount.FromCount(15));
                 cfg.PositionProvider = new PrimaryScreenPositionProvider(Corner.BottomRight, 10, 10);
-                cfg.KeyboardEventHandler = new AllowedSourcesInputEventHandler(new []{ typeof(CustomInputDisplayPart) });
+                cfg.KeyboardEventHandler = new DelegatedInputEventHandler(args => { args.Handled = true });
+
+
+                    new AllowedSourcesInputEventHandler(new []{ typeof(CustomInputDisplayPart) });
             });
         }
 

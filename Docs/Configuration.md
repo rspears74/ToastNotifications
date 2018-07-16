@@ -149,3 +149,20 @@ var options =  new MessageOptions{
 /* * */
 notifier.ShowError(message, options);
 ```
+
+### Notifier keyboard event handler
+By default notifier blocks every key input in notification to avoid interruptions and other problems.
+In cases when you need text inputs in custom notifications, you have to specify KeyboardEventHandler which will decide if keyboard event should be blocked or pass through.
+
+```csharp
+Notifier notifier = new Notifier(cfg =>
+{
+    /* * */
+	cfg.KeyboardEventHandler = new DelegatedInputEventHandler(args => { args.Handled = true/false; });
+	 /* * */
+	cfg.KeyboardEventHandler = new AllowedSourcesInputEventHandler(new []{ typeof(CustomInputDisplayPart) });
+});
+
+notifier.ClearMessages(); // removes all notifications
+notifier.ClearMessages("Foo"); // removes all notifications with text "Foo"
+```
