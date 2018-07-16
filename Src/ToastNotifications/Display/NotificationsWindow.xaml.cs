@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
 using ToastNotifications.Core;
+using ToastNotifications.Events;
 using ToastNotifications.Utilities;
 
 namespace ToastNotifications.Display
@@ -13,6 +14,8 @@ namespace ToastNotifications.Display
     /// </summary>
     public partial class NotificationsWindow : Window
     {
+        private IKeyboardEventHandler _keyboardEventHandler;
+
         public NotificationsWindow()
         {
             InitializeComponent();
@@ -78,6 +81,11 @@ namespace ToastNotifications.Display
             NotificationsList.Width = displayOptions.Width;
         }
 
+        public void SetKeyboardEventHandler(IKeyboardEventHandler keyboardEventHandler)
+        {
+            _keyboardEventHandler = keyboardEventHandler;
+        }
+
         private void NotificationsWindow_Loaded(object sender, RoutedEventArgs e)
         {
             WindowInteropHelper wndHelper = new WindowInteropHelper(this);
@@ -93,10 +101,9 @@ namespace ToastNotifications.Display
             e.Cancel = true;
         }
 
-
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            e.Handled = true;
+            _keyboardEventHandler.Handle(e);
         }
 
         public new void Close()

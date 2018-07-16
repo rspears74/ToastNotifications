@@ -60,6 +60,10 @@
     <Compile Include="Core\DisplayOptions.cs" />
     <Compile Include="Core\MessageOptions.cs" />
     <Compile Include="Core\WindowsTaskBarLocation.cs" />
+    <Compile Include="Events\AllowedSourcesInputEventHandler.cs" />
+    <Compile Include="Events\BlockAllKeyInputEventHandler.cs" />
+    <Compile Include="Events\DelegatedInputEventHandler.cs" />
+    <Compile Include="Events\IKeyboardEventHandler.cs" />
     <Compile Include="Notifier.cs" />
     <Compile Include="Position\PositionExtensions.cs" />
     <Compile Include="Utilities\DateTimeNow.cs" />

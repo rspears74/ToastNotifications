@@ -2,7 +2,9 @@
 using System.Windows;
 using ToastNotifications.Core;
 using ToastNotifications.Display;
+using ToastNotifications.Events;
 using ToastNotifications.Lifetime;
+// ReSharper disable LocalizableElement
 
 namespace ToastNotifications
 {
@@ -45,15 +47,18 @@ namespace ToastNotifications
                 if (cfg.PositionProvider == null)
                     throw new ArgumentNullException(nameof(cfg.PositionProvider), "Missing configuration argument");
 
+                var keyboardEventHandler = cfg.KeyboardEventHandler ?? new BlockAllKeyInputEventHandler();
+
                 _configuration = cfg;
                 _lifetimeSupervisor = cfg.LifetimeSupervisor;
                 _lifetimeSupervisor.UseDispatcher(cfg.Dispatcher);
 
                 _displaySupervisor = new NotificationsDisplaySupervisor(
-                    cfg.Dispatcher, 
-                    cfg.PositionProvider, 
-                    cfg.LifetimeSupervisor, 
-                    cfg.DisplayOptions);
+                    cfg.Dispatcher,
+                    cfg.PositionProvider,
+                    cfg.LifetimeSupervisor,
+                    cfg.DisplayOptions,
+                    keyboardEventHandler);
             }
         }
 
