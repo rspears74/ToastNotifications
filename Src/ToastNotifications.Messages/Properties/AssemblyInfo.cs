@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DevCrew.pl Rafał Łopatka")]
 [assembly: AssemblyProduct("ToastNotifications.Messages")]
-[assembly: AssemblyCopyright("Copyright © Rafał Łopatka  2017")]
+[assembly: AssemblyCopyright("Copyright © Rafał Łopatka  2018")]
 [assembly: AssemblyTrademark("Rafał Łopatka")]
 [assembly: AssemblyCulture("")]
 
