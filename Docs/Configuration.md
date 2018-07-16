@@ -162,7 +162,4 @@ Notifier notifier = new Notifier(cfg =>
 	 /* * */
 	cfg.KeyboardEventHandler = new AllowedSourcesInputEventHandler(new []{ typeof(CustomInputDisplayPart) });
 });
-
-notifier.ClearMessages(); // removes all notifications
-notifier.ClearMessages("Foo"); // removes all notifications with text "Foo"
 ```
