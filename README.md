@@ -126,6 +126,8 @@ wdcossey (https://github.com/wdcossey)
 
 Jan M. (https://github.com/Pantheas)
 
+Fischjoghurt (https://github.com/Fischjoghurt)
+
 ## Creating new issues
 Before you create new issue, please check the documentation, because many features and options are already there.
 (https://github.com/raflop/ToastNotifications/tree/master-v2/Docs)
