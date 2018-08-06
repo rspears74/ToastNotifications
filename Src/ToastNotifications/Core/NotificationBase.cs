@@ -24,7 +24,7 @@ namespace ToastNotifications.Core
             {
                 opts.CloseClickAction(this);
             }
-            _closeAction.Invoke(this);
+            _closeAction?.Invoke(this);
         }
 
         public string GetMessage()
