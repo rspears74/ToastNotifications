@@ -72,6 +72,7 @@
     <Compile Include="Utilities\IDateTimeProvider.cs" />
     <Compile Include="Utilities\IInterval.cs" />
     <Compile Include="Utilities\Interval.cs" />
+    <Compile Include="Utilities\VisualTreeHelper.cs" />
     <Compile Include="Utilities\WinApi.cs" />
     <Page Include="Display\NotificationsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

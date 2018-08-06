@@ -2,29 +2,29 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using ToastNotifications.Display;
+using ToastNotifications.Utilities;
 
 namespace ToastNotifications.Core
 {
     public abstract class NotificationDisplayPart : UserControl
     {
-        protected INotificationAnimator _animator;
+        protected INotificationAnimator Animator;
         public INotification Notification { get; protected set; }
 
         protected NotificationDisplayPart()
         {
-            _animator = new NotificationAnimator(this, TimeSpan.FromMilliseconds(300), TimeSpan.FromMilliseconds(300));
+            Animator = new NotificationAnimator(this, TimeSpan.FromMilliseconds(300), TimeSpan.FromMilliseconds(300));
 
             Margin = new Thickness(1);
 
-            _animator.Setup();
+            Animator.Setup();
 
             Loaded += OnLoaded;
             MinHeight = 60;
         }
 
-        virtual public MessageOptions GetOptions()
+        public virtual MessageOptions GetOptions()
         {
             return null;
         }
@@ -43,7 +43,7 @@ namespace ToastNotifications.Core
                         if (dc.CanClose)
                         {
                             dc.CanClose = false;
-                            var btn = FindChild<Button>(this, "CloseButton");
+                            var btn = this.FindChild<Button>("CloseButton");
                             btn.Visibility = Visibility.Visible;
                         }
                     }
@@ -68,7 +68,7 @@ namespace ToastNotifications.Core
         }
 
 
-        virtual public string GetMessage()
+        public virtual string GetMessage()
         {
             return "?";
         }
@@ -81,55 +81,12 @@ namespace ToastNotifications.Core
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            _animator.PlayShowAnimation();
+            Animator.PlayShowAnimation();
         }
 
         public void OnClose()
         {
-            _animator.PlayHideAnimation();
-        }
-
-        public static T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
-        {
-            // Confirm parent and childName are valid. 
-            if (parent == null) return null;
-
-            T foundChild = null;
-
-            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
-            for (int i = 0; i < childrenCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                // If the child is not of the request child type child
-                T childType = child as T;
-                if (childType == null)
-                {
-                    // recursively drill down the tree
-                    foundChild = FindChild<T>(child, childName);
-
-                    // If the child is found, break so we do not overwrite the found child. 
-                    if (foundChild != null) break;
-                }
-                else if (!string.IsNullOrEmpty(childName))
-                {
-                    var frameworkElement = child as FrameworkElement;
-                    // If the child's name is set for search
-                    if (frameworkElement != null && frameworkElement.Name == childName)
-                    {
-                        // if the child's name is of the request name
-                        foundChild = (T)child;
-                        break;
-                    }
-                }
-                else
-                {
-                    // child element found.
-                    foundChild = (T)child;
-                    break;
-                }
-            }
-
-            return foundChild;
+            Animator.PlayHideAnimation();
         }
     }
 }
