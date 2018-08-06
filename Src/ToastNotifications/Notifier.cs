@@ -35,17 +35,7 @@ namespace ToastNotifications
                 if (_configuration != null)
                     return;
 
-                var cfg = new NotifierConfiguration
-                {
-                    Dispatcher = Application.Current.Dispatcher
-                };
-                _configureAction(cfg);
-
-                if (cfg.LifetimeSupervisor == null)
-                    throw new ArgumentNullException(nameof(cfg.LifetimeSupervisor), "Missing configuration argument");
-
-                if (cfg.PositionProvider == null)
-                    throw new ArgumentNullException(nameof(cfg.PositionProvider), "Missing configuration argument");
+                var cfg = CreateConfiguration();
 
                 var keyboardEventHandler = cfg.KeyboardEventHandler ?? new BlockAllKeyInputEventHandler();
 
@@ -60,6 +50,22 @@ namespace ToastNotifications
                     cfg.DisplayOptions,
                     keyboardEventHandler);
             }
+        }
+
+        private NotifierConfiguration CreateConfiguration()
+        {
+            var cfg = new NotifierConfiguration
+            {
+                Dispatcher = Application.Current.Dispatcher
+            };
+            _configureAction(cfg);
+
+            if (cfg.LifetimeSupervisor == null)
+                throw new ArgumentNullException(nameof(cfg.LifetimeSupervisor), "Missing configuration argument");
+
+            if (cfg.PositionProvider == null)
+                throw new ArgumentNullException(nameof(cfg.PositionProvider), "Missing configuration argument");
+            return cfg;
         }
 
         public void ClearMessages()
