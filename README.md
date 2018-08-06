@@ -110,23 +110,26 @@ notifier.Dispose();
   ToastNotifications v2 assembies are signed. Read this doc for more details.
 
 ## Contributors
-B. Micka (https://github.com/b-mi)
-
-Krzysztof Zmorzyński (https://github.com/ZmorzynskiK)
-
-Kostiantyn (https://github.com/dualbios)
-
-Uwy (https://github.com/Uwy)
 
 Andy Li (https://github.com/oneandy)
 
+B. Micka (https://github.com/b-mi)
+
 BrainCrumbz (https://github.com/BrainCrumbz)
 
-wdcossey (https://github.com/wdcossey)
+Fischjoghurt (https://github.com/Fischjoghurt)
 
 Jan M. (https://github.com/Pantheas)
 
-Fischjoghurt (https://github.com/Fischjoghurt)
+Kostiantyn (https://github.com/dualbios)
+
+Krzysztof Zmorzyński (https://github.com/ZmorzynskiK)
+
+Robin Krom Lakritzator (https://github.com/Lakritzator)
+
+Uwy (https://github.com/Uwy)
+
+William David Cossey (https://github.com/wdcossey)
 
 ## Creating new issues
 Before you create new issue, please check the documentation, because many features and options are already there.
