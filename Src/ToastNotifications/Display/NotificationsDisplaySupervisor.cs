@@ -121,7 +121,9 @@ namespace ToastNotifications.Display
             if (notification != null)
             {
                 notification.DisplayPart.OnClose();
-                DelayAction.Execute(TimeSpan.FromMilliseconds(300), () => _window?.CloseNotification(notification.DisplayPart));
+                DelayAction.Execute(TimeSpan.FromMilliseconds(300), 
+                    () => _window?.CloseNotification(notification.DisplayPart),
+                    _dispatcher);
             }
         }
 
