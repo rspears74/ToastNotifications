@@ -121,6 +121,8 @@ Fischjoghurt (https://github.com/Fischjoghurt)
 
 Jan M. (https://github.com/Pantheas)
 
+Johannes Jidel (https://github.com/jidel)
+
 Kostiantyn (https://github.com/dualbios)
 
 Krzysztof Zmorzyński (https://github.com/ZmorzynskiK)
