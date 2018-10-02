@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Threading;
 using ToastNotifications.Core;
+using ToastNotifications.Lifetime.Clear;
 using ToastNotifications.Utilities;
 
 namespace ToastNotifications.Lifetime
@@ -135,31 +136,14 @@ namespace ToastNotifications.Lifetime
                 TimerStop();
         }
 
-        public void ClearMessages(string msg)
+        public void ClearMessages(IClearStrategy clearStrategy)
         {
-            if (string.IsNullOrWhiteSpace(msg))
+            var notifications = clearStrategy.GetNotificationsToRemove(_notifications);
+            foreach (var notification in notifications)
             {
-                var notificationsToRemove = _notifications
-                    .Select(x => x.Value)
-                    .ToList();
-                foreach (var item in notificationsToRemove)
-                {
-                    CloseNotification(item.Notification);
-                }
-                return;
-            }
-
-            var notificationsToRemove2 = _notifications
-                .Where(x => x.Value.Notification.DisplayPart.GetMessage() == msg)
-                .Select(x => x.Value)
-                .ToList();
-            foreach (var item in notificationsToRemove2)
-            {
-                CloseNotification(item.Notification);
+                CloseNotification(notification);
             }
         }
-
-
 
         public event EventHandler<ShowNotificationEventArgs> ShowNotificationRequested;
         public event EventHandler<CloseNotificationEventArgs> CloseNotificationRequested;

@@ -4,6 +4,8 @@ using ToastNotifications.Core;
 using ToastNotifications.Display;
 using ToastNotifications.Events;
 using ToastNotifications.Lifetime;
+using ToastNotifications.Lifetime.Clear;
+
 // ReSharper disable LocalizableElement
 
 namespace ToastNotifications
@@ -68,14 +70,9 @@ namespace ToastNotifications
             return cfg;
         }
 
-        public void ClearMessages()
+        public void ClearMessages(IClearStrategy clearStrategy)
         {
-            ClearMessages("");
-        }
-
-        public void ClearMessages(string msg)
-        {
-            this._lifetimeSupervisor?.ClearMessages(msg);
+            _lifetimeSupervisor?.ClearMessages(clearStrategy);
         }
 
         private bool _disposed = false;

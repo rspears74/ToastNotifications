@@ -57,6 +57,11 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lifetime\Clear\ClearAll.cs" />
+    <Compile Include="Lifetime\Clear\ClearByMessage.cs" />
+    <Compile Include="Lifetime\Clear\ClearByTag.cs" />
+    <Compile Include="Lifetime\Clear\ClearFirst.cs" />
+    <Compile Include="Lifetime\Clear\ClearLast.cs" />
     <Compile Include="Core\DisplayOptions.cs" />
     <Compile Include="Core\MessageOptions.cs" />
     <Compile Include="Core\WindowsTaskBarLocation.cs" />
@@ -64,6 +69,7 @@
     <Compile Include="Events\BlockAllKeyInputEventHandler.cs" />
     <Compile Include="Events\DelegatedInputEventHandler.cs" />
     <Compile Include="Events\IKeyboardEventHandler.cs" />
+    <Compile Include="Lifetime\Clear\IClearStrategy.cs" />
     <Compile Include="Notifier.cs" />
     <Compile Include="Position\PositionExtensions.cs" />
     <Compile Include="Utilities\DateTimeNow.cs" />
@@ -134,5 +140,6 @@
   <ItemGroup>
     <None Include="readme.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

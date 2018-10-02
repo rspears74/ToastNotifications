@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Threading;
 using ToastNotifications.Core;
+using ToastNotifications.Lifetime.Clear;
 
 namespace ToastNotifications.Lifetime
 {
@@ -73,9 +74,13 @@ namespace ToastNotifications.Lifetime
         {
         }
 
-
-        public void ClearMessages(string msg)
+        public void ClearMessages(IClearStrategy clearStrategy)
         {
+            var notifications = clearStrategy.GetNotificationsToRemove(_notifications);
+            foreach (var notification in notifications)
+            {
+                CloseNotification(notification);
+            }
         }
 
         public event EventHandler<ShowNotificationEventArgs> ShowNotificationRequested;

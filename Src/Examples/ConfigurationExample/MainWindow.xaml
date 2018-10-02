@@ -74,6 +74,7 @@
                 <TextBlock Text="Options:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
                 <CheckBox IsChecked="{Binding ShowCloseButton, Mode=TwoWay}" VerticalAlignment="Center">ShowCloseButton</CheckBox>
                 <CheckBox IsChecked="{Binding FreezeOnMouseEnter, Mode=TwoWay}" VerticalAlignment="Center" Margin="20 0 0 0">FreezeOnMouseEnter</CheckBox>
+                <CheckBox IsChecked="{Binding TopMost, Mode=TwoWay}" VerticalAlignment="Center" Margin="20 0 0 0">Topmost</CheckBox>
             </StackPanel>
         </Grid>
 
@@ -90,6 +91,10 @@
                 <Button Content="Warning" Margin="5" Width="100" Click="Button_ShowWarningClick" />
                 <Button Content="Error" Margin="5" Width="100" Click="Button_ShowErrorClick" />
                 <Button Content="Customized" Margin="5" Width="100" Click="Button_ShowCustomizedMessageClick" />
+
+                <Button Content="Clear last" Margin="5" Width="100" Click="Button_ClearLastClick" />
+                <Button Content="Clear all" Margin="5" Width="100" Click="Button_ClearAllClick" />
+
             </StackPanel>
         </Grid>
    

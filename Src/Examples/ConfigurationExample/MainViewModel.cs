@@ -6,6 +6,7 @@ using System.Windows.Threading;
 using ToastNotifications;
 using ToastNotifications.Core;
 using ToastNotifications.Lifetime;
+using ToastNotifications.Lifetime.Clear;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
 
@@ -32,6 +33,7 @@ namespace ConfigurationExample
                 cfg.PositionProvider = CreatePositionProvider(corner, relation);
                 cfg.LifetimeSupervisor = CreateLifetimeSupervisor(lifetime);
                 cfg.Dispatcher = Dispatcher.CurrentDispatcher;
+                cfg.DisplayOptions.TopMost = TopMost.GetValueOrDefault();
             });
         }
 
@@ -80,27 +82,27 @@ namespace ConfigurationExample
         #region notifier messages
         internal void ShowWarning(string message)
         {
-            _notifier.ShowWarning(message, createOptions());
+            _notifier.ShowWarning(message, CreateOptions());
         }
 
-        private MessageOptions createOptions()
+        private MessageOptions CreateOptions()
         {
             return new MessageOptions() { FreezeOnMouseEnter = this.FreezeOnMouseEnter.GetValueOrDefault(), ShowCloseButton = this.ShowCloseButton.GetValueOrDefault()};
         }
 
         internal void ShowSuccess(string message)
         {
-            _notifier.ShowSuccess(message, createOptions());
+            _notifier.ShowSuccess(message, CreateOptions());
         }
 
         public void ShowInformation(string message)
         {
-            _notifier.ShowInformation(message, createOptions());
+            _notifier.ShowInformation(message, CreateOptions());
         }
 
         public void ShowError(string message)
         {
-            _notifier.ShowError(message, createOptions());
+            _notifier.ShowError(message, CreateOptions());
         }
 
         public void ShowCustomizedMessage(string message)
@@ -166,6 +168,8 @@ namespace ConfigurationExample
         public bool? FreezeOnMouseEnter { get; set; } = true;
         public bool? ShowCloseButton { get; set; } = false;
 
+        public bool? TopMost { get; set; } = true;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -175,5 +179,15 @@ namespace ConfigurationExample
             handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        public void ClearLast()
+        {
+            _notifier.ClearMessages(new ClearLast());
+        }
+
+        public void ClearAll()
+        {
+           _notifier.ClearMessages(new ClearAll());
+        }
     }
 }
