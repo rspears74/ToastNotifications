@@ -70,7 +70,7 @@ namespace BasicUsageExample
 
         private void Button_ClearClick(object sender, RoutedEventArgs e)
         {
-            _vm.ClearMessages("");
+            _vm.ClearAll();
         }
 
         private void Button_ClearLastClick(object sender, RoutedEventArgs e)

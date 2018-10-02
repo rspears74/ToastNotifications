@@ -13,11 +13,8 @@
     </description>
     <summary>Toast notifications for WPF</summary>
     <releaseNotes>
-      Upgrading from v1 ?
-
-      ToastNotifications v2 is completely new implementation and it's not compatibile with version 1.
-      Please follow migration instructions to upgrade to the new version.
-      https://github.com/raflop/ToastNotifications/blob/master-v2/Docs/Migration.md
+		Find out more at:
+		https://github.com/raflop/ToastNotifications/blob/master-v2/Docs/ReleaseNotes.md
     </releaseNotes>
     <language>en-US</language>
     <licenseUrl>https://github.com/raflop/ToastNotifications/blob/master-v2/license</licenseUrl>

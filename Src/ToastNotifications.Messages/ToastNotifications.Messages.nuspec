@@ -13,6 +13,8 @@
     </description>
     <summary>Toast notifications for WPF. This package contains set of predefined messages types for ToastNotifications v2</summary>
     <releaseNotes>
+		Find out more at:
+		https://github.com/raflop/ToastNotifications/blob/master-v2/Docs/ReleaseNotes.md
     </releaseNotes>
     <language>en-US</language>
     <licenseUrl>https://github.com/raflop/ToastNotifications/blob/master-v2/license</licenseUrl>

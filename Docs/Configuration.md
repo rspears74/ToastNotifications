@@ -120,8 +120,11 @@ Notifier notifier = new Notifier(cfg =>
     /* * */
 });
 
-notifier.ClearMessages(); // removes all notifications
-notifier.ClearMessages("Foo"); // removes all notifications with text "Foo"
+notifier.ClearMessages(new ClearAll()); // removes all notifications
+notifier.ClearMessages(new ClearByMessage()); // removes only messages with message specified message text
+notifier.ClearMessages(new ClearByTag()); // removes all notifications with specified tag
+notifier.ClearMessages(new ClearFirst()); // removes first notification
+notifier.ClearMessages(new ClearLast()); // removes last notification
 ```
 
 
