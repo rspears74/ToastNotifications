@@ -11,7 +11,7 @@
 # ToastNotifications v2
 #### Toast notifications for WPF
 
-## 1.5.0
+## v 2.5.0
 ### New features
 Completely new mechanism of clearing selected toast notifications via Notifier instance.
 ### Bug fixes
@@ -19,3 +19,6 @@ ClearMessages(string) does not work #75
 ### Breaking changes
 Changed signature of Notifier.ClearMessages, it takes now as a parameter an instance of IClearStrategy instead of string.
 Library provides built in strategies: ClearAll, ClearByMessage, ClearByTag, ClearFirst, ClearLast
+
+## v 2.4.0
+Rolled back due to lots of breaking changes, delayed and moved to v3
