@@ -24,7 +24,8 @@ namespace ToastNotifications
             _configureAction = configureAction;
         }
 
-        public void Notify<T>(Func<INotification> createNotificationFunc)
+        public void Notify<T>(Func<T> createNotificationFunc)
+            where T: INotification
         {
             Configure();
             _lifetimeSupervisor.PushNotification(createNotificationFunc());
