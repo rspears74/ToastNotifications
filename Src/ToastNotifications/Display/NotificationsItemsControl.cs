@@ -117,5 +117,10 @@ namespace ToastNotifications.Display
         {
             Items.Remove(notification);
         }
+
+        public int GetItemCount()
+        {
+            return Items.Count;
+        }
     }
 }
