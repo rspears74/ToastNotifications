@@ -11,6 +11,14 @@
 # ToastNotifications v2
 #### Toast notifications for WPF
 
+## v 2.5.1
+### Bug fixes
+ClearByMessage and ClearByTag do not work. #83
+Black dialog is appearing when i use the notifications #81
+### Breaking changes
+Internal refactoring, removed duplicated or unused methods.
+Changed some internal functions to properties.
+
 ## v 2.5.0
 ### New features
 Completely new mechanism of clearing selected toast notifications via Notifier instance.
