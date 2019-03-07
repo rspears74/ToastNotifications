@@ -118,9 +118,13 @@ Andy Li (https://github.com/oneandy)
 
 B. Micka (https://github.com/b-mi)
 
+CuiLiang (https://github.com/cuiliang)
+
 BrainCrumbz (https://github.com/BrainCrumbz)
 
 Fischjoghurt (https://github.com/Fischjoghurt)
+
+Francois Botha igitur (https://github.com/igitur)
 
 Jan M. (https://github.com/Pantheas)
 
@@ -135,6 +139,8 @@ Robin Krom Lakritzator (https://github.com/Lakritzator)
 Uwy (https://github.com/Uwy)
 
 William David Cossey (https://github.com/wdcossey)
+
+
 
 ## Creating new issues
 Before you create new issue, please check the documentation, because many features and options are already there.
