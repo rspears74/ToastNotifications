@@ -63,7 +63,7 @@ namespace BasicUsageExample
 
         private void CloseAction(NotificationBase obj)
         {
-            var opts = obj.DisplayPart.GetOptions();
+            var opts = obj.DisplayPart.Notification.Options;
             _vm.ShowInformation($"Notification close clicked, Tag: {opts.Tag}");
         }
 

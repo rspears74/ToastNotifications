@@ -11,7 +11,7 @@ namespace CustomNotificationsExample.CustomInput
     {
         private CustomInputDisplayPart _displayPart;
 
-        public CustomInputNotification(string message, string initialText)
+        public CustomInputNotification(string message, string initialText, MessageOptions messageOptions) : base(message, messageOptions)
         {
             Message = message;
             InputText = initialText;

@@ -3,6 +3,7 @@ using CustomNotificationsExample.MahAppsNotification;
 using MahApps.Metro.Controls;
 using System;
 using System.Windows;
+using CustomNotificationsExample.CustomCommand;
 using CustomNotificationsExample.CustomInput;
 using ToastNotifications;
 using ToastNotifications.Events;
