@@ -15,6 +15,7 @@ namespace ConfigurationExample
     public class MainViewModel : INotifyPropertyChanged
     {
         #region notifier configuration
+
         private Notifier _notifier;
 
         public MainViewModel()
@@ -52,7 +53,8 @@ namespace ConfigurationExample
             if (lifetime == NotificationLifetimeType.Basic)
                 return new CountBasedLifetimeSupervisor(MaximumNotificationCount.FromCount(5));
 
-            return new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(3), MaximumNotificationCount.UnlimitedNotifications());
+            return new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(3),
+                MaximumNotificationCount.UnlimitedNotifications());
         }
 
         private static IPositionProvider CreatePositionProvider(Corner corner, PositionProviderType relation)
@@ -60,49 +62,70 @@ namespace ConfigurationExample
             switch (relation)
             {
                 case PositionProviderType.Window:
-                    {
-                        return new WindowPositionProvider(Application.Current.MainWindow, corner, 5, 5);
-                    }
+                {
+                    return new WindowPositionProvider(Application.Current.MainWindow, corner, 5, 5);
+                }
                 case PositionProviderType.Screen:
-                    {
-                        return new PrimaryScreenPositionProvider(corner, 5, 5);
-                    }
+                {
+                    return new PrimaryScreenPositionProvider(corner, 5, 5);
+                }
                 case PositionProviderType.Control:
-                    {
-                        var mainWindow = Application.Current.MainWindow as MainWindow;
-                        var trackingElement = mainWindow?.TrackingElement;
-                        return new ControlPositionProvider(mainWindow, trackingElement, corner, 5, 5);
-                    }
+                {
+                    var mainWindow = Application.Current.MainWindow as MainWindow;
+                    var trackingElement = mainWindow?.TrackingElement;
+                    return new ControlPositionProvider(mainWindow, trackingElement, corner, 5, 5);
+                }
             }
 
             throw new InvalidEnumArgumentException();
         }
+
         #endregion
 
         #region notifier messages
+
         internal void ShowWarning(string message)
         {
             _notifier.ShowWarning(message, CreateOptions());
-        }
-
-        private MessageOptions CreateOptions()
-        {
-            return new MessageOptions() { FreezeOnMouseEnter = this.FreezeOnMouseEnter.GetValueOrDefault(), ShowCloseButton = this.ShowCloseButton.GetValueOrDefault()};
+            RememberMessage(message);
         }
 
         internal void ShowSuccess(string message)
         {
             _notifier.ShowSuccess(message, CreateOptions());
+            RememberMessage(message);
         }
 
         public void ShowInformation(string message)
         {
             _notifier.ShowInformation(message, CreateOptions());
+            RememberMessage(message);
         }
 
         public void ShowError(string message)
         {
             _notifier.ShowError(message, CreateOptions());
+            RememberMessage(message);
+        }
+
+        private string _lastMessage = "";
+        private void RememberMessage(string message)
+        {
+            if (_messageCounter % 3 == 0)
+            {
+                _lastMessage = message;
+            }
+        }
+
+        private int _messageCounter = 0;
+        private MessageOptions CreateOptions()
+        {
+            return new MessageOptions
+            {
+                FreezeOnMouseEnter = FreezeOnMouseEnter.GetValueOrDefault(),
+                ShowCloseButton = ShowCloseButton.GetValueOrDefault(),
+                Tag = ++_messageCounter % 2
+            };
         }
 
         public void ShowCustomizedMessage(string message)
@@ -188,6 +211,16 @@ namespace ConfigurationExample
         public void ClearAll()
         {
            _notifier.ClearMessages(new ClearAll());
+        }
+
+        public void ClearByTag()
+        {
+            _notifier.ClearMessages(new ClearByTag(0));
+        }
+
+        public void ClearByMessage()
+        {
+            _notifier.ClearMessages(new ClearByMessage(_lastMessage));
         }
     }
 }

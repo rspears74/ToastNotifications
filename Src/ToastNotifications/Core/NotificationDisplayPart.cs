@@ -24,25 +24,19 @@ namespace ToastNotifications.Core
             MinHeight = 60;
         }
 
-        public virtual MessageOptions GetOptions()
-        {
-            return null;
-        }
-
         protected override void OnMouseEnter(MouseEventArgs e)
         {
-            var dc = DataContext as INotification;
-            var opts = dc?.DisplayPart?.GetOptions();
-            if (opts != null && opts.FreezeOnMouseEnter)
+            var options = Notification.Options;
+            if (options != null && options.FreezeOnMouseEnter)
             {
-                if (!opts.UnfreezeOnMouseLeave) // message stay freezed, show close button
+                if (!options.UnfreezeOnMouseLeave) // message stay freezed, show close button
                 {
-                    var bord2 = this.Content as Border;
+                    var bord2 = Content as Border;
                     if (bord2 != null)
                     {
-                        if (dc.CanClose)
+                        if (Notification.CanClose)
                         {
-                            dc.CanClose = false;
+                            Notification.CanClose = false;
                             var btn = this.FindChild<Button>("CloseButton");
                             btn.Visibility = Visibility.Visible;
                         }
@@ -50,7 +44,7 @@ namespace ToastNotifications.Core
                 }
                 else
                 {
-                    dc.CanClose = false;
+                    Notification.CanClose = false;
                 }
             }
             base.OnMouseEnter(e);
@@ -58,19 +52,12 @@ namespace ToastNotifications.Core
 
         protected override void OnMouseLeave(MouseEventArgs e)
         {
-            var dc = DataContext as INotification;
-            var opts = dc?.DisplayPart?.GetOptions();
+            var opts = Notification.Options;
             if (opts != null && opts.FreezeOnMouseEnter && opts.UnfreezeOnMouseLeave)
             {
-                dc.CanClose = true;
+                Notification.CanClose = true;
             }
             base.OnMouseLeave(e);
-        }
-
-
-        public virtual string GetMessage()
-        {
-            return "?";
         }
 
         public void Bind<TNotification>(TNotification notification) where TNotification : INotification

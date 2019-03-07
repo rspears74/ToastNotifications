@@ -94,6 +94,8 @@
 
                 <Button Content="Clear last" Margin="5" Width="100" Click="Button_ClearLastClick" />
                 <Button Content="Clear all" Margin="5" Width="100" Click="Button_ClearAllClick" />
+                <Button Content="Clear by Tag" Margin="5" Width="100" Click="Button_ClearByTag" />
+                <Button Content="Clear by Message" Margin="5" Width="100" Click="Button_ClearByMessage" />
 
             </StackPanel>
         </Grid>

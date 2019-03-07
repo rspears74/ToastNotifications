@@ -16,7 +16,7 @@ namespace ToastNotifications.Lifetime.Clear
         public IEnumerable<INotification> GetNotificationsToRemove(NotificationsList notifications)
         {
             var notificationsToRemove = notifications
-                .Where(x => x.Value.Notification.DisplayPart.GetOptions().Tag == _tag)
+                .Where(x => x.Value.Notification.Options.Tag.Equals(_tag))
                 .Select(x => x.Value.Notification)
                 .ToList();
 

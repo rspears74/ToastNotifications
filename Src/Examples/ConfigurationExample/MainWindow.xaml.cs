@@ -55,5 +55,15 @@ namespace ConfigurationExample
         {
             _vm.ClearAll();
         }
+
+        private void Button_ClearByTag(object sender, RoutedEventArgs e)
+        {
+            _vm.ClearByTag();
+        }
+
+        private void Button_ClearByMessage(object sender, RoutedEventArgs e)
+        {
+            _vm.ClearByMessage();
+        }
     }
 }
