@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using ToastNotifications;
@@ -8,7 +8,7 @@ using ToastNotifications.Lifetime.Clear;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
 
-namespace BasicUsageExample
+namespace DotNetCoreUsageExample
 {
     public class ToastViewModel : INotifyPropertyChanged
     {
@@ -25,7 +25,7 @@ namespace BasicUsageExample
                     offsetY: 100);
 
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                    notificationLifetime: TimeSpan.FromSeconds(6), 
+                    notificationLifetime: TimeSpan.FromSeconds(6),
                     maximumNotificationCount: MaximumNotificationCount.FromCount(6));
 
                 cfg.Dispatcher = Application.Current.Dispatcher;
