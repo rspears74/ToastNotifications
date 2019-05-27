@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using ToastNotifications;
@@ -8,7 +8,7 @@ using ToastNotifications.Lifetime.Clear;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
 
-namespace BasicUsageExample
+namespace DotNetCoreUsageExample
 {
     public class ToastViewModel : INotifyPropertyChanged
     {
@@ -19,14 +19,14 @@ namespace BasicUsageExample
             _notifier = new Notifier(cfg =>
             {
                 //cfg.PositionProvider = new WindowPositionProvider(
-                //    parentWindow: Application.Current.MainWindow, 
-                //    corner: Corner.BottomRight, 
-                //    offsetX: 25,  
+                //    parentWindow: Application.Current.MainWindow,
+                //    corner: Corner.BottomRight,
+                //    offsetX: 25,
                 //    offsetY: 100);
                 cfg.PositionProvider = new PrimaryScreenPositionProvider(Corner.BottomRight, 0, 0);
 
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                    notificationLifetime: TimeSpan.FromSeconds(6), 
+                    notificationLifetime: TimeSpan.FromSeconds(6),
                     maximumNotificationCount: MaximumNotificationCount.FromCount(6));
 
                 cfg.Dispatcher = Application.Current.Dispatcher;
