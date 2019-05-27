@@ -18,12 +18,11 @@ namespace DotNetCoreUsageExample
         {
             _notifier = new Notifier(cfg =>
             {
-                //cfg.PositionProvider = new WindowPositionProvider(
-                //    parentWindow: Application.Current.MainWindow,
-                //    corner: Corner.BottomRight,
-                //    offsetX: 25,
-                //    offsetY: 100);
-                cfg.PositionProvider = new PrimaryScreenPositionProvider(Corner.BottomRight, 0, 0);
+                cfg.PositionProvider = new WindowPositionProvider(
+                    parentWindow: Application.Current.MainWindow,
+                    corner: Corner.BottomRight,
+                    offsetX: 25,
+                    offsetY: 100);
 
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                     notificationLifetime: TimeSpan.FromSeconds(6),
