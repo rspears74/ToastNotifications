@@ -45,6 +45,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,6 +73,7 @@
     <Compile Include="Events\IKeyboardEventHandler.cs" />
     <Compile Include="Lifetime\Clear\IClearStrategy.cs" />
     <Compile Include="Notifier.cs" />
+    <Compile Include="Position\GdiPrimaryScreenPositionProvider.cs" />
     <Compile Include="Position\PositionExtensions.cs" />
     <Compile Include="Utilities\DateTimeNow.cs" />
     <Compile Include="Utilities\DateTimeProvider.cs" />
