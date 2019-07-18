@@ -7,13 +7,10 @@ namespace CustomNotificationsExample.CustomInput
     /// </summary>
     public partial class CustomInputDisplayPart : NotificationDisplayPart
     {
-        private CustomInputNotification _notification;
-
         public CustomInputDisplayPart(CustomInputNotification notification)
         {
             InitializeComponent();
-            _notification = notification;
-            DataContext = notification;
+            Bind(notification);
         }
     }
 }

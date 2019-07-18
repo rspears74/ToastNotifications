@@ -9,8 +9,8 @@ namespace CustomNotificationsExample.CustomMessage
     {
         public CustomDisplayPart(CustomNotification customNotification)
         {
-            Bind(customNotification);
             InitializeComponent();
+            Bind(customNotification);
         }
     }
 }

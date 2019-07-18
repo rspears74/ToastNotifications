@@ -38,7 +38,10 @@ namespace ToastNotifications.Core
                         {
                             Notification.CanClose = false;
                             var btn = this.FindChild<Button>("CloseButton");
-                            btn.Visibility = Visibility.Visible;
+                            if (btn != null)
+                            {
+                                btn.Visibility = Visibility.Visible;
+                            }
                         }
                     }
                 }
