@@ -135,10 +135,9 @@ using ToastNotifications.Messages.Core;
 /* * */
 var options =  new MessageOptions{
     FontSize = 30, // set notification font size
-    ShowCloseButton = false // set the option to show or hide notification close button
+    ShowCloseButton = false, // set the option to show or hide notification close button
     Tag = "Any object or value which might matter in callbacks",
     FreezeOnMouseEnter = true, // set the option to prevent notification dissapear automatically if user move cursor on it
-    ShowCloseButton = true, // set the option to show or hide close button on notifications
     NotificationClickAction = n => // set the callback for notification click event
     {
         n.Close(); // call Close method to remove notification
