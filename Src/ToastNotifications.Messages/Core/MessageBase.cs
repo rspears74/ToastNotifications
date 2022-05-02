@@ -27,7 +27,7 @@ namespace ToastNotifications.Messages.Core
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            _displayPart.MouseLeftButtonDown -= OnLeftMouseUp;
+            _displayPart.MouseLeftButtonUp -= OnLeftMouseUp;
             _displayPart.Unloaded -= OnUnloaded;
         }
 
