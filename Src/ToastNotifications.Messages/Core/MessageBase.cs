@@ -19,7 +19,7 @@ namespace ToastNotifications.Messages.Core
             TDisplayPart displayPart = CreateDisplayPart();
 
             displayPart.Unloaded += OnUnloaded;
-            displayPart.MouseLeftButtonDown += OnLeftMouseDown;
+            displayPart.MouseLeftButtonUp += OnLeftMouseUp;
 
             UpdateDisplayOptions(displayPart, Options);
             return displayPart;
@@ -27,13 +27,14 @@ namespace ToastNotifications.Messages.Core
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            _displayPart.MouseLeftButtonDown -= OnLeftMouseDown;
+            _displayPart.MouseLeftButtonDown -= OnLeftMouseUp;
             _displayPart.Unloaded -= OnUnloaded;
         }
 
-        private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
+        private void OnLeftMouseUp(object sender, MouseButtonEventArgs e)
         {
             Options.NotificationClickAction?.Invoke(this);
+            e.Handled = true;
         }
 
         protected abstract void UpdateDisplayOptions(TDisplayPart displayPart, MessageOptions options);
